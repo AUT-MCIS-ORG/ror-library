@@ -1,53 +1,42 @@
-<p>-----------START of _header.html.erb----------</p>
+<div class="tophearder">
+<div class="container">
+<div class="col-md-3 pull-right col-xs-12 padding0">
+<ul class="list-inline help">
+
+
+
 <%if current_user %>
-	<%=current_user.email %>	
-	<%=current_user.role %>
+	<li class="col-md-3 col-xs-4 btn"><%=current_user.email %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Home", "/welcome/index", :method => :get %></li>	
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Search", "/search/home", :method => :get %></a></li>
+	
+	<% if current_user.role == "moderator" %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles To be Moderated", "/moderator/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Rejected", "/moderator/listAllRejectedArticles", :method => :get %></li>	
+	<% elsif current_user.role == "analyst" %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles To be Analysed", "/analyst/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Being Analysed", "/analyst/listAllArticlesInProgress", :method => :get %></li>
+	<% elsif current_user.role == "admin" %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles To be Analysed", "/analyst/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Being Analysed", "/analyst/listAllArticlesInProgress", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Users", "/account/listAllUsers", :method => :get %></li>
+	<% else %>
+
+	<% end %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
 <%elsif request.path.start_with?("/users") %>
     <%# do nothing %>
 <% else %>
-	<%= link_to "Log In", new_user_session_path, :method => :get %>
-	<%= link_to "Sign up", "/users/sign_up", :method => :get %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Log In", new_user_session_path, :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Sign up", "/users/sign_up", :method => :get %></li>
 	
 <%end%>	
-<% if user_signed_in? %>
-	<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 
-<br>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<table>
-		<tr>
-		<td>0</td>
-		<td>Home, show <%= link_to "Home - /welcome/index", "/welcome/index", :method => :get %></td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>for all users, show <%= link_to "Search - /search/home", "/search/home", :method => :get %></td>
-	</tr>
-	<tr>
-		<td>2</td>
-		<td>for moderator show <%= link_to "Show all Articles To be moderated - /moderator/listAllPendingArticles", "/moderator/listAllPendingArticles", :method => :get %></td>
-	</tr>
-
-	</tr>
-		<tr>
-		<td>4</td>
-		<td>for moderator+admin show <%= link_to "Show all Articles rejected before - /moderator/listAllRejectedArticles", "/moderator/listAllRejectedArticles", :method => :get %></td>
-	</tr>
-		</tr>
-		<tr>
-		<td>5</td>
-		<td>for analyst+admin show <%= link_to "Show all Articles To be Analysed - /analyst/listAllPendingArticles", "/analyst/listAllPendingArticles", :method => :get %></td>
-	</tr>
-	<tr>
-		<td>5</td>
-		<td>for analyst+admin show <%= link_to "Show all Articles Being Analysed - /analyst/listAllArticlesInProgress", "/analyst/listAllArticlesInProgress", :method => :get %></td>
-	</tr>
-		
-	<tr>
-		<td>6</td>
-		<td>for admin show <%= link_to "Show all System Users - /account/listAllUsers", "/account/listAllUsers", :method => :get %></td>
-	</tr>
-</table>
-<%end%>
------------END of _header.html.erb----------</p>
+</ul>
+</div>
+<div class="col-md-9 col-xs-12 padding0">
+<a href="#"><img src="/assets/b_logo.png"></a>
+<p style="color:#fff;font-size:18px;margin-top:13px">SOFTWARE ENGINEERING RESEARCH LAB EVIDENCE REPOSITORY</p>
+</div>
+</div>
+</div>
