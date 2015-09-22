@@ -1,2 +1,74 @@
 <h1>Search#home</h1>
 <p>Find me in app/views/search/home.html.erb</p>
+
+<form name="searchForm" action="/result/index">
+	<p>we need a form here to save the query conditions...<br> The form action is <b>/result/index</b></p>
+<table border="1px" width="80%%">
+	<tr>
+		<td>
+		<select>
+			<option value="title">Document Title</option>
+  			<option value="authors">Authors</option>
+  			<option value="abstract">Abstract</option>
+  			<option value="DOI">DOI</option>
+  			<option value="..">..more to come..</option>
+		</select>
+		
+		<select>
+			<option value="like">Like</option>
+  			<option value="biggerThan">Bigger Than</option>
+  			<option value="smallerThan">Smaller Than</option>
+  			<option value="equals">Equals</option>
+		</select>
+		
+		 <input type="input" /> <br>
+		<select>
+			<option value="title">Document Title</option>
+  			<option value="authors">Authors</option>
+  			<option value="abstract">Abstract</option>
+  			<option value="DOI">DOI</option>
+  			<option value="..">..more to come..</option>
+		</select>
+		
+		<select>
+			<option value="like">Like</option>
+  			<option value="biggerThan">Bigger Than</option>
+  			<option value="smallerThan">Smaller Than</option>
+  			<option value="equals">Equals</option>
+		</select>
+		
+		 <input type="input" /><br>
+		 		<select>
+			<option value="title">Document Title</option>
+  			<option value="authors">Authors</option>
+  			<option value="abstract">Abstract</option>
+  			<option value="DOI">DOI</option>
+  			<option value="..">..more to come..</option>
+		</select>
+		
+		<select>
+			<option value="like">Like</option>
+  			<option value="biggerThan">Bigger Than</option>
+  			<option value="smallerThan">Smaller Than</option>
+  			<option value="equals">Equals</option>
+		</select>
+		
+		 <input type="input" />		 
+		 
+		 </td>
+		<td rowspan="2">
+			Access the REST service <b>/search/listMySavedSearches</b> to retrieve saved searches
+			<li>my saved search 1</li>
+			<li> <%= link_to "my saved search 2-/result/index?searchID=100", "/result/index?searchID=100", :method => :get %></li>
+			<li>my saved search 3</li>
+			<li>my saved search 4</li>
+			
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" value="Advanced Search" />
+		</td>
+	</tr>
+</table>
+</form>

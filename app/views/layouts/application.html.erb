@@ -8,24 +8,12 @@
 </head>
 <body>
 	
-<%if current_user %>
-	<%=current_user.email %>	
-	<%=current_user.role %>
-<%elsif request.path.start_with?("/users") %>
-    <%# do nothing %>
-<% else %>
-	<%= link_to "Log In", new_user_session_path, :method => :get %>
-<%end%>	
-<% if user_signed_in? %>
-	<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-<%end%>
 
-<br>
-<br>	
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<%= render "layouts/header.html.erb" %>
+
+
    
 <%= yield %>
-
+<%= render "layouts/footer.html.erb" %>
 </body>
 </html>

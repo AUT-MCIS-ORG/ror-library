@@ -1,0 +1,1 @@
+json.value "preview content of an article"

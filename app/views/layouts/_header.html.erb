@@ -1,0 +1,53 @@
+<p>-----------START of _header.html.erb----------</p>
+<%if current_user %>
+	<%=current_user.email %>	
+	<%=current_user.role %>
+<%elsif request.path.start_with?("/users") %>
+    <%# do nothing %>
+<% else %>
+	<%= link_to "Log In", new_user_session_path, :method => :get %>
+	<%= link_to "Sign up", "/users/sign_up", :method => :get %>
+	
+<%end%>	
+<% if user_signed_in? %>
+	<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+
+<br>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<table>
+		<tr>
+		<td>0</td>
+		<td>Home, show <%= link_to "Home - /welcome/index", "/welcome/index", :method => :get %></td>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>for all users, show <%= link_to "Search - /search/home", "/search/home", :method => :get %></td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>for moderator show <%= link_to "Show all Articles To be moderated - /moderator/listAllPendingArticles", "/moderator/listAllPendingArticles", :method => :get %></td>
+	</tr>
+
+	</tr>
+		<tr>
+		<td>4</td>
+		<td>for moderator+admin show <%= link_to "Show all Articles rejected before - /moderator/listAllRejectedArticles", "/moderator/listAllRejectedArticles", :method => :get %></td>
+	</tr>
+		</tr>
+		<tr>
+		<td>5</td>
+		<td>for analyst+admin show <%= link_to "Show all Articles To be Analysed - /analyst/listAllPendingArticles", "/analyst/listAllPendingArticles", :method => :get %></td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>for analyst+admin show <%= link_to "Show all Articles Being Analysed - /analyst/listAllArticlesInProgress", "/analyst/listAllArticlesInProgress", :method => :get %></td>
+	</tr>
+		
+	<tr>
+		<td>6</td>
+		<td>for admin show <%= link_to "Show all System Users - /account/listAllUsers", "/account/listAllUsers", :method => :get %></td>
+	</tr>
+</table>
+<%end%>
+-----------END of _header.html.erb----------</p>
