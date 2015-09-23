@@ -14,14 +14,31 @@
 	</tr>
 </table>
 
+<div class="container mtb40">
+<div class="col-md-4 col-sm-4 col-xs-4 padding0">
+<button class="btn btn-default col-md-12 col-sm-12 col-xs-12" type="submit">Print Result</button>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-4 padding0">
+<button class="btn btn-default col-md-12 col-sm-12 col-xs-12" type="submit">Export as a File</button>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-4 padding0">
+<button class="btn btn-default col-md-12 col-sm-12 col-xs-12" type="submit">Share with Friends</button>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-4 padding0">
+<button class="btn btn-default col-md-12 col-sm-12 col-xs-12" type="submit">Save Search Conditions</button>
+</div>
+</div>
 <p> The search results retrieved from REST service: <b>/result/getResults.json </b></p>
-<table width="80%" >
-	<tr>
-		<th>Title</th>
-		<th>Published Date</th>
-		<th>Authors</th>
-		<th>Average Rating</th>
-	</tr>
+<table class="table table-bordered table-striped table-responsive">
+   <thead>
+      <tr>
+         <th>Title <span class="glyphicon glyphicon-triangle-top pull-right"></span></th>
+         <th>Publish Date<span class="glyphicon glyphicon-triangle-top pull-right"></span><span class="glyphicon glyphicon glyphicon-triangle-bottom pull-right"></span></th>
+         <th>Authors</th>
+         <th>Average Rating<span class="glyphicon glyphicon-triangle-bottom pull-right"></span></th>
+      </tr>
+   </thead>
+   <tbody>
 		<tr>
 		<td>Title 1</td>
 		<td>Published Date 1</td>
@@ -52,4 +69,17 @@
 		<td>Authors 5</td>
 		<td>Average Rating 5</td>
 	</tr>
+	</tbody>
 </table>
+
+<div class="col-md-12 col-xs-12 padding0 text-center">
+<ul class="pagination">
+  <li><a href="#">Previous</a></li>
+  <li class="active"><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">Next</a></li>
+</ul>
+</div>
