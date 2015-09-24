@@ -6,8 +6,11 @@
 <a href="#"> <%= image_tag "b_logo.png" %> </a>
 </div>
 <div class="col-md-9 pull-right col-xs-12 padding0">
-	<span style="color:#fff"><%=current_user.email %></span>
-
+<%if current_user %>	
+	<span style="color:#fff">Welcome <%=current_user.email %></span>
+<% else %>
+<span style="color:#fff"> Welcome Guest </span>
+<%end%>
 <ul class="list-inline help">
 
 <%if current_user %>
