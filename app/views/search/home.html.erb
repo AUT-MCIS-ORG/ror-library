@@ -1,2 +1,151 @@
 <h1>Search#home</h1>
 <p>Find me in app/views/search/home.html.erb</p>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$.ajax({
+			url: '/search_fields/list.json',
+			data: '',        
+			type: 'get',
+			dataType: 'json',
+			contentType: 'application/json;charset=utf-8',
+			cache: false,
+			success: function(data, status) {
+				$(data.searchFields).each(function(){ 
+
+					var option = $("<option>"+this.fieldName+"</option>");
+					option.val(this.fieldID);
+					option.appendTo($("#selectPara"));
+
+				}); 
+
+				$("#addSelect").click(function(){
+
+					$("#removeButton").removeAttr("style");
+					var addTr = $("#selectTr").clone();
+					addTr.find("input:first").val("");
+					addTr.appendTo($("#selectTable"));
+					
+				});
+			},
+			error: function(xhr) {
+                //if some exceptions happen, please have a check at xhr.responseText
+            }
+        });
+	});
+</script>
+<script type="text/javascript">
+//delete current search condition
+function deleteTr(obj) {
+
+	if ($("#selectTable tr").length>1) {
+		$(obj).closest('tr').remove();
+
+	};
+	if ($("#selectTable tr").length ===1) {
+		$("#removeButton").attr("style","display:none");
+
+	};
+
+}
+</script>
+
+<form name="searchForm" action="/result/index">
+	<p>we need a form here to save the query conditions...<br> The form action is <b>/result/index</b></p>
+	<table border="1px" width="80%%" id="selectTable">
+		<tr id ="selectTr">
+			<td>
+				<select id ="selectPara">
+				</select>
+				
+				<select>
+					<option value="like">Like</option>
+					<option value="biggerThan">Bigger Than</option>
+					<option value="smallerThan">Smaller Than</option>
+					<option value="equals">Equals</option>
+				</select>
+				
+				<input type="input" value＝"" /> 
+				
+				<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none";/>     
+				<br>
+				
+			</td>      
+		</tr>   
+	</table>
+	<div>
+		<input type = "button" value="Add search condition" id ="addSelect"></input>
+	</div>
+	<div>
+		<input type="submit" value="Advanced Search" />
+	</div>
+<!-- <table border="1px" width="80%%">
+	<tr>
+		<td>
+		<select>
+			<option value="title">Document Title</option>
+  			<option value="authors">Authors</option>
+  			<option value="abstract">Abstract</option>
+  			<option value="DOI">DOI</option>
+  			<option value="..">..more to come..</option>
+		</select>
+		
+		<select>
+			<option value="like">Like</option>
+  			<option value="biggerThan">Bigger Than</option>
+  			<option value="smallerThan">Smaller Than</option>
+  			<option value="equals">Equals</option>
+		</select>
+		
+		 <input type="input" /> <br>
+		<select>
+			<option value="title">Document Title</option>
+  			<option value="authors">Authors</option>
+  			<option value="abstract">Abstract</option>
+  			<option value="DOI">DOI</option>
+  			<option value="..">..more to come..</option>
+		</select>
+		
+		<select>
+			<option value="like">Like</option>
+  			<option value="biggerThan">Bigger Than</option>
+  			<option value="smallerThan">Smaller Than</option>
+  			<option value="equals">Equals</option>
+		</select>
+		
+		 <input type="input" /><br>
+		 		<select>
+			<option value="title">Document Title</option>
+  			<option value="authors">Authors</option>
+  			<option value="abstract">Abstract</option>
+  			<option value="DOI">DOI</option>
+  			<option value="..">..more to come..</option>
+		</select>
+		
+		<select>
+			<option value="like">Like</option>
+  			<option value="biggerThan">Bigger Than</option>
+  			<option value="smallerThan">Smaller Than</option>
+  			<option value="equals">Equals</option>
+		</select>
+		
+		 <input type="input" />		<br> 
+		 
+		 </td>
+		<td rowspan="2">
+			Access the REST service <b>/search/listMySavedSearches</b> to retrieve saved searches
+			<li>my saved search 1</li>
+			<li> <%= link_to "my saved search 2-/result/index?searchID=100", "/result/index?searchID=100", :method => :get %></li>
+			<li>my saved search 3</li>
+			<li>my saved search 4</li>
+			
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input type="submit" value="Advanced Search" />
+		</td>
+	</tr>
+</table> -->
+</form>

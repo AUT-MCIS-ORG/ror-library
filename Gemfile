@@ -43,7 +43,7 @@ gem 'puma'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'bootstrap'
+# gem 'bootstrap'
 gem 'devise'
 
 group :test, :development do

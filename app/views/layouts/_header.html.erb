@@ -1,0 +1,42 @@
+<div class="tophearder">
+<div class="container">
+<div class="col-md-3 pull-right col-xs-12 padding0">
+<ul class="list-inline help">
+
+
+
+<%if current_user %>
+	<li class="col-md-3 col-xs-4 btn"><%=current_user.email %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Home", "/welcome/index", :method => :get %></li>	
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Search", "/search/home", :method => :get %></a></li>
+	
+	<% if current_user.role == "moderator" %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles To be Moderated", "/moderator/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Rejected", "/moderator/listAllRejectedArticles", :method => :get %></li>	
+	<% elsif current_user.role == "analyst" %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles To be Analysed", "/analyst/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Being Analysed", "/analyst/listAllArticlesInProgress", :method => :get %></li>
+	<% elsif current_user.role == "admin" %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles To be Analysed", "/analyst/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Being Analysed", "/analyst/listAllArticlesInProgress", :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Users", "/account/listAllUsers", :method => :get %></li>
+	<% else %>
+
+	<% end %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+<%elsif request.path.start_with?("/users") %>
+    <%# do nothing %>
+<% else %>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Log In", new_user_session_path, :method => :get %></li>
+	<li class="col-md-3 col-xs-4 btn"><%= link_to "Sign up", "/users/sign_up", :method => :get %></li>
+	
+<%end%>	
+
+</ul>
+</div>
+<div class="col-md-9 col-xs-12 padding0">
+<a href="#"> <%= image_tag "b_logo.png" %> </a>
+<p style="color:#fff;font-size:18px;margin-top:13px">SOFTWARE ENGINEERING RESEARCH LAB EVIDENCE REPOSITORY</p>
+</div>
+</div>
+</div>

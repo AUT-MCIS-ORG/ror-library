@@ -5,4 +5,12 @@ class WelcomeController < ApplicationController
   end
   def jquery
   end
+  
+  def listLatestArticles
+    
+  end
+  
+  def listHighestRatingArticles
+    
+  end
 end

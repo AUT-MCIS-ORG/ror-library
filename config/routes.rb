@@ -1,4 +1,30 @@
 Rails.application.routes.draw do
+  get 'article/getPreview'
+
+  get 'article/postRating'
+
+  get 'result/index'
+  get 'result/getResults'
+  get 'result/listMySavedSearches'
+
+  get 'result/print'
+
+  get 'result/shareByEmail'
+
+  get 'result/saveSearch'
+
+  get 'result/saveResults'
+
+  get 'account/listAllUsers'
+
+  get 'analyst/listAllPendingArticles'
+
+  get 'analyst/listAllArticlesInProgress'
+
+  get 'moderator/listAllRejectedArticles'
+
+  get 'moderator/listAllPendingArticles'
+
   get 'search/home'
 
   devise_for :users
@@ -6,6 +32,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
   # The root page, which is not protected by authentication
   get 'welcome/index'
+  get '/welcome/listHighestRatingArticles'
+  get '/welcome/listLatestArticles'
    
   # REST service to get all the filter fields 
   get 'search_fields/list'
