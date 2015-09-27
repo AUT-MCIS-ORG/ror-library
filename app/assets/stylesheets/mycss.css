@@ -15,7 +15,7 @@
 .fa-google-plus{background:url(../images/fa-google-plus.png) no-repeat 0 2px;width:25px;height:20px;display: inline-block;}
 .glyphicon{cursor:pointer}
 .tophearder{background:#cff6cb;width:100%;border-bottom:12px solid #78d06f;}
-.bottomdb{background:#78d06f;width:100%;padding:26px 0 40px;border-top:12px solid #acf6a4;}
+.bottomdb{background:#78d06f;width:100%;padding:26px 0 40px;border-top:12px solid #acf6a4; margin-top: 20px;}
 .help{margin-top:15px; text-align:}
 .help li{border:1px solid #78d06f;}
 .help li a{color:#78d06f}
@@ -31,7 +31,8 @@ a.lianjieys:hover{ text-decoration:underline}
 .subtitle2{ width: 100%; color:#62bc58; text-align:right};
 
 /*nav*/
-.mainnav{display:block; clear:both; background:#030; height:50px;}
+.mainnav{display:block; clear:both; background:#030;}
+.logo {height: 65px; padding: 0px; }
 
 
 
