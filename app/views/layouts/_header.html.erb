@@ -1,19 +1,21 @@
 <div class="tophearder">
 <div class="container">
 
-
-<div class="col-md-1 col-xs-12 padding0">
-<a href="#"> <%= image_tag "b_logo.png" %> </a>
-</div>
-<div class="col-md-9 pull-right col-xs-12 padding0">
-<%if current_user %>	
-	<span style="color:#fff">Welcome <%=current_user.email %></span>
+<div class="subtitle2"><%if current_user %>	
+	<span >Welcome <%=current_user.email %></span>
 <% else %>
-<span style="color:#fff"> Welcome Guest </span>
-<%end%>
-<ul class="list-inline help">
+<span > Welcome Guest, please <%= link_to "Log In", new_user_session_path, :method => :get %> or <%= link_to "Sign up", "/users/sign_up", :method => :get %> </span>
+<%end%></div>
+<div class="col-md-12 col-xs-12 padding0">
+<a href="#"> <%= image_tag "b_logo.png" %> </a>
+<p class="subtitle">SOFTWARE ENGINEERING RESEARCH LAB EVIDENCE REPOSITORY</p>
+</div></div>
 
 <%if current_user %>
+<div class="col-md-9 pull-right col-xs-12 padding0">
+
+<ul class="list-inline help">
+
 	<li class="col-md-1 col-xs-4 btn"><%= link_to "Home", "/welcome/index", :method => :get %></li>	
 	<li class="col-md-1 col-xs-4 btn"><%= link_to "Search", "/search/home", :method => :get %></a></li>
 	
@@ -31,15 +33,11 @@
 
 	<% end %>
 	<li class="col-md-1 col-xs-4 btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+</ul></div>
 <%elsif request.path.start_with?("/users") %>
     <%# do nothing %>
 <% else %>
-	<li class="col-md-1 col-xs-4 btn"><%= link_to "Log In", new_user_session_path, :method => :get %></li>
-	<li class="col-md-1 col-xs-4 btn"><%= link_to "Sign up", "/users/sign_up", :method => :get %></li>
-	
-<%end%>	
 
-</ul>
-</div>
+<%end%>	
 </div>
 </div>
