@@ -2,9 +2,9 @@
 <div class="container">
 
 <div class="subtitle2"><%if current_user %>	
-	<span >Welcome <%=current_user.email %></span>
+	<span >Welcome <%=current_user.email %>  <u><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></u></span>
 <% else %>
-<span > Welcome Guest, please <%= link_to "Log In", new_user_session_path, :method => :get %> or <%= link_to "Sign up", "/users/sign_up", :method => :get %> </span>
+<span > Welcome Guest, please <u><%= link_to "Log In", new_user_session_path, :method => :get %></u> or <u><%= link_to "Sign up", "/users/sign_up", :method => :get %> </u></span>
 <%end%></div>
 <div class="col-md-12 col-xs-12 padding0 ">
 <a href="#" class="logo"> <%= image_tag "b_logo.png" %></a>
@@ -32,7 +32,7 @@
 	<% else %>
 
 	<% end %>
-	<li class="col-md-1 col-xs-4 btn"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+	
 </ul></div>
 <%elsif request.path.start_with?("/users") %>
     <%# do nothing %>
