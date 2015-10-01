@@ -18,9 +18,12 @@ SearchField.new({ :fieldID => "DOI", :fieldName => "DOI - Digital Object Identif
 SearchField.new({ :fieldID => "ISBN", :fieldName => "ISBN - International Standard Book Number", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "rating", :fieldName => "Average Rating", :fieldType=>"list",:optionalValues=>"1,2,3,4,5"}).save
 SearchField.new({ :fieldID => "publicationDate", :fieldName => "Publication Date", :fieldType=>"date"}).save
-SearchField.new({ :fieldID => "SEmethod", :fieldName => "SE methods or practies", :fieldType=>"string"}).save
-SearchField.new({ :fieldID => "ResearchMethod", :fieldName => "Research Method", :fieldType=>"string"}).save
+SearchField.new({ :fieldID => "Page", :fieldName => "Page", :fieldType=>"string"}).save
+SearchField.new({ :fieldID => "Journal", :fieldName => "Journal", :fieldType=>"string"}).save
+SearchField.new({ :fieldID => "SEmethod", :fieldName => "SE methods or practies", :fieldType=>"list",:optinnalValues=>"TDD, BDD, pair programming, planning poker, daily standup meetings, story boards, user story mapping, continuous integration, retrospectives, burn down charts, requirements prioritisation, version control, code sharing"}).save
+SearchField.new({ :fieldID => "SEmethodology", :fieldName => "SE methodology", :fieldType=>"list",:optionalValues=>"Scrum, Waterfall, Spiral, XP, Rational Unified Process, Crystal, Clean room, Feature Driven Development, Model Driven Development, Domain Driven Development, Formal methods, Problem Driven Development, Cloud computing, Service Oriented Development, Aspect Oriented Development, Valuse Driven Development , Product Driven Development, Agile"}).save
+SearchField.new({ :fieldID => "ResearchMethod", :fieldName => "Research Method", :fieldType=>"list",:optinnalValues=>"Case study, Field Observation, Experiment, Interview, Survey"}).save
 SearchField.new({ :fieldID => "ResearchOutcome", :fieldName => "Research Outcome", :fieldType=>"string"}).save
 
 
-puts "create 10 sample search conditionals"
+puts "create 13 sample search conditionals"
