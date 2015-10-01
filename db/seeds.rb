@@ -12,10 +12,15 @@ User.new({ :email => "regular@serler.com", :password => "password", :password_co
 puts "created 4 default users: admin/moderator/analyst/regular with password: 'password'"
 
 SearchField.new({ :fieldID => "title", :fieldName => "Document Title", :fieldType=>"string"}).save
-SearchField.new({ :fieldID => "authors", :fieldName => "Authors", :fieldType=>"string"}).save
+SearchField.new({ :fieldID => "authors", :fieldName => "Authors", :fieldType=>"string"}).∂save
 SearchField.new({ :fieldID => "abstract", :fieldName => "Abstract", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "DOI", :fieldName => "DOI - Digital Object Identifier", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "ISBN", :fieldName => "ISBN - International Standard Book Number", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "rating", :fieldName => "Average Rating", :fieldType=>"list",:optionalValues=>"1,2,3,4,5"}).save
 SearchField.new({ :fieldID => "publicationDate", :fieldName => "Publication Date", :fieldType=>"date"}).save
-puts "create 7 sample search conditionals"
+SearchField.new({ :fieldID => "SEmethod", :fieldName => "SE methods or practies", :fieldType=>"string"}).save
+SearchField.new({ :fieldID => "ResearchMethod", :fieldName => "Research Method", :fieldType=>"string"}).save
+SearchField.new({ :fieldID => "ResearchOutcome", :fieldName => "Research Outcome", :fieldType=>"string"}).save
+
+
+puts "create 10 sample search conditionals"
