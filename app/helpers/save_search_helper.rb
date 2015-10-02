@@ -1,0 +1,2 @@
+module SaveSearchHelper
+end

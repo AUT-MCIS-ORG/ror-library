@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916211725) do
+ActiveRecord::Schema.define(version: 20151002030841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "saved_searches", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "search_name"
+    t.string   "search_values"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "search_fields", force: :cascade do |t|
     t.string   "fieldID"
@@ -23,6 +31,10 @@ ActiveRecord::Schema.define(version: 20150916211725) do
     t.string   "optionalValues"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "ticks", id: false, force: :cascade do |t|
+    t.datetime "tick"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,7 +1,7 @@
 <h1>Result#index</h1>
 <p>Find me in app/views/result/index.html.erb</p>
 
-<input size="120" type="text" name="searchConditions" value="this should be a hidden field to save the current search conditions for further actions" />
+<input size="120" type="text" name="searchConditions" value="<%=@searchString %>" />
 
 <table>
 	<tr>
@@ -32,10 +32,10 @@
 <table class="table table-bordered table-striped table-responsive">
    <thead>
       <tr>
-         <th>Title <span class="glyphicon glyphicon-triangle-top pull-right"></span></th>
-         <th>Publish Date<span class="glyphicon glyphicon-triangle-top pull-right"></span><span class="glyphicon glyphicon glyphicon-triangle-bottom pull-right"></span></th>
+         <th>Title <span class=" pull-right"></span></th>
+         <th>Publish Date<span class=" pull-right"></span><span class=" pull-right"></span></th>
          <th>Authors</th>
-         <th>Average Rating<span class="glyphicon glyphicon-triangle-bottom pull-right"></span></th>
+         <th>Average Rating<span class=" pull-right"></span></th>
       </tr>
    </thead>
    <tbody>

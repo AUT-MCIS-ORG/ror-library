@@ -51,22 +51,38 @@ function deleteTr(obj) {
 }
 </script>
 
+<table>
+	<tr>
+		<td>
 <form name="searchForm" action="/result/index">
 	<p>we need a form here to save the query conditions...<br> The form action is <b>/result/index</b></p>
+	
+	<input name="selectField1" value="field1"/>
+	<input name="selectField1Opt" value="opt1"/>
+	<input name="selectField1Value" value="value1" /> <br>
+	
+	<input name="selectField2" value="field2"/>
+	<input name="selectField2Opt" value="opt2"/>
+	<input name="selectField2Value" value="value2" /> <br>
+	
+	<input name="selectField3" value="field3"/>
+	<input name="selectField3Opt" value="opt3"/>
+	<input name="selectField3Value" value="value3" />
+	
 	<table border="1px" width="80%%" id="selectTable">
 		<tr id ="selectTr">
 			<td>
-				<select id ="selectPara">
+				<select id ="selectPara" name="selectName1">
 				</select>
 				
-				<select>
+				<select name="selectOpt1">
 					<option value="like">Like</option>
 					<option value="biggerThan">Bigger Than</option>
 					<option value="smallerThan">Smaller Than</option>
 					<option value="equals">Equals</option>
 				</select>
 				
-				<input type="input" value＝"" /> 
+				<input type="input" name="selectValue1" value＝"" /> 
 				
 				<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none";/>     
 				<br>
@@ -80,6 +96,24 @@ function deleteTr(obj) {
 	<div>
 		<input type="submit" value="Search" />
 	</div>
+</form>			
+			
+		</td>
+		<td>
+			Access the REST service <b>/save_search/list.json</b> to retrieve saved searches
+			<li>my saved search 1</li>
+			<li> <%= link_to "my saved search 2-/result/index?searchID=2", "/result/index?searchID=2", :method => :get %></li>
+			<li>my saved search 3</li>
+			<li>my saved search 4</li>	
+			To delete the search condition: /save_search/delete.json
+			<li>{"searchID": 6}</li>
+			To save/create a new search condition /save_search/save.json
+			<li>{"search_name":"name2","search_values":"xxxxxxxxxxxxxxxxxxxx"}</li>	
+		</td>
+	</tr>
+</table>
+
+	
 <!-- <table border="1px" width="80%%">
 	<tr>
 		<td>
@@ -148,4 +182,4 @@ function deleteTr(obj) {
 		</td>
 	</tr>
 </table> -->
-</form>
+

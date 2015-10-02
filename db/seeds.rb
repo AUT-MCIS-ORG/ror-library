@@ -27,3 +27,16 @@ SearchField.new({ :fieldID => "ResearchOutcome", :fieldName => "Research Outcome
 
 
 puts "create 13 sample search conditionals"
+
+saved_search_list = [
+  [ 1, "search name1", "selectField1=field1####selectField1Opt=opt1####selectField1Value=value1####selectField2=field2####selectField2Opt=opt2####selectField2Value=value2####selectField3=field3####selectField3Opt=opt3####selectField3Value=value3####selectOpt1=like####selectValue1=####" ],
+  [ 1, "search name2", "selectField1=field1####selectField1Opt=opt1####selectField1Value=value1####selectField2=field2####selectField2Opt=opt2####selectField2Value=value2####selectField3=field3####selectField3Opt=opt3####selectField3Value=value3####selectOpt1=like####selectValue1=####" ],
+  [ 1, "search name3", "selectField1=field1####selectField1Opt=opt1####selectField1Value=value1####selectField2=field2####selectField2Opt=opt2####selectField2Value=value2####selectField3=field3####selectField3Opt=opt3####selectField3Value=value3####selectOpt1=like####selectValue1=####" ],
+  [ 1, "search name4", "selectField1=field1####selectField1Opt=opt1####selectField1Value=value1####selectField2=field2####selectField2Opt=opt2####selectField2Value=value2####selectField3=field3####selectField3Opt=opt3####selectField3Value=value3####selectOpt1=like####selectValue1=####" ],
+]
+
+saved_search_list.each do |userID, searchName, searchValues|
+  SavedSearch.create( user_id: userID, search_name: searchName, search_values: searchValues)
+end
+
+puts "create 4 sample search values"
