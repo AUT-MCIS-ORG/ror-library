@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002030841) do
+ActiveRecord::Schema.define(version: 20151003040523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "evidences", force: :cascade do |t|
+    t.integer  "source_id"
+    t.string   "se_method"
+    t.string   "se_methodology"
+    t.string   "benefit"
+    t.string   "result"
+    t.string   "participants"
+    t.string   "metric"
+    t.string   "context"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "source_id"
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.string   "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "saved_searches", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,6 +53,29 @@ ActiveRecord::Schema.define(version: 20151002030841) do
     t.string   "optionalValues"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.string   "title"
+    t.string   "authors"
+    t.text     "abstract"
+    t.string   "publisher"
+    t.string   "publish_date"
+    t.string   "keywords"
+    t.string   "doi"
+    t.integer  "page_start"
+    t.integer  "page_end"
+    t.integer  "volume"
+    t.integer  "issue"
+    t.integer  "avg_rating"
+    t.string   "source_status"
+    t.string   "research_questions"
+    t.string   "research_methods"
+    t.integer  "submitter_id"
+    t.integer  "moderator_id"
+    t.integer  "analyst_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "ticks", id: false, force: :cascade do |t|
