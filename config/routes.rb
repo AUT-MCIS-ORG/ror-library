@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'source_rating/rate'
+
   post 'save_search/save'
   delete 'save_search/delete'
   get 'save_search/list'

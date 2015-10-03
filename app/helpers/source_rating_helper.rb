@@ -1,0 +1,2 @@
+module SourceRatingHelper
+end
