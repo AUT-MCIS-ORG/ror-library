@@ -28,7 +28,7 @@
 <button class="btn btn-default col-md-12 col-sm-12 col-xs-12" type="submit">Save Search Conditions</button>
 </div>
 </div>
-<p> The search results retrieved from REST service: <b>/result/getResults.json </b></p>
+<p> The search results retrieved from REST service: <b> <%= link_to "/result/getResults.json", '/result/getResults.json', :method => :get%> </b></p>
 <table class="table table-bordered table-striped table-responsive">
    <thead>
       <tr>
@@ -40,7 +40,7 @@
    </thead>
    <tbody>
 		<tr>
-		<td>Title 1</td>
+		<td> <%= link_to "Title 1", '/result/getSourceDetail.json?source_id=1', :method => :get%> </td>
 		<td>Published Date 1</td>
 		<td>Authors 1</td>
 		<td>Average Rating 1</td>

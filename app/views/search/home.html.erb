@@ -54,8 +54,10 @@ function deleteTr(obj) {
 <table>
 	<tr>
 		<td>
-<form name="searchForm" action="/result/index">
+<form name="searchForm" method="post" action="/result/index">
 	<p>we need a form here to save the query conditions...<br> The form action is <b>/result/index</b></p>
+	<!-- input type="hidden" name="<%=request_forgery_protection_token%>" value="<%=form_authenticity_token%>" /-->
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	
 	<input name="selectField1" value="field1"/>
 	<input name="selectField1Opt" value="opt1"/>

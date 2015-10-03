@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   get 'article/postRating'
 
   get 'result/index'
+  post 'result/index'
   get 'result/getResults'
-  get 'result/listMySavedSearches'
+  #get 'result/listMySavedSearches'
+  get 'result/getSourceDetail'
+
 
   get 'result/print'
 

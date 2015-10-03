@@ -1,1 +1,2 @@
-json.value "this is the search results"
+json.count @rows.count
+json.rows @rows

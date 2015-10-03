@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20151003040523) do
     t.string   "authors"
     t.text     "abstract"
     t.string   "publisher"
-    t.string   "publish_date"
+    t.datetime   "publish_date"
     t.string   "keywords"
     t.string   "doi"
     t.integer  "page_start"

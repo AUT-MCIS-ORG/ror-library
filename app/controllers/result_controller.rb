@@ -20,22 +20,39 @@ class ResultController < ApplicationController
 
   end
 
-  def listMySavedSearches
-  end
+  # obsolete, moved in /saved_search/list
+  #def listMySavedSearches
+  #end
+  #
+  #def saveSearch
+  #end
 
+  def getSourceDetail
+    begin
+      id = params[:source_id]
+      @source = Source.find(id)   
+      @rc = 0
+    rescue ActiveRecord::RecordNotFound
+      @rc = 1  
+      @source = "none"
+    end
+     
+  end
+  
   def print
   end
 
   def shareByEmail
   end
 
-  def saveSearch
-  end
-
   def saveResults
   end
   
   def getResults
-    
+    # read the search condition from the json request
+    searchConditions = params[:searchConditions]  
+    puts "Json request searchConditions: #{searchConditions}"
+    sql = "select sources.*,evidences.se_method,evidences.se_methodology,evidences.benefit, evidences.result, evidences.participants , evidences.metric,  evidences.context from evidences, sources where sources.id = evidences.source_id"
+    @rows = Source.find_by_sql(sql) 
   end
 end
