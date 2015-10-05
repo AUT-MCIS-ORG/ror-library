@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ModeratorController, type: :controller do
 
+    login_admin
+
   describe "GET #listAllPendingArticles" do
     it "returns http success" do
       get :listAllPendingArticles

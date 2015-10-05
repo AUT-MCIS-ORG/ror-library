@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SearchController, type: :controller do
 
+     login_admin    
+
   describe "GET #home" do
     it "returns http success" do
       get :home

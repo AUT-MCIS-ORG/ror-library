@@ -2,16 +2,11 @@ require 'rails_helper'
 
 RSpec.describe ResultController, type: :controller do
 
+    login_admin
+
   describe "GET #index" do
     it "returns http success" do
       get :index
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #listMySavedSearches" do
-    it "returns http success" do
-      get :listMySavedSearches
       expect(response).to have_http_status(:success)
     end
   end
@@ -25,14 +20,14 @@ RSpec.describe ResultController, type: :controller do
 
   describe "GET #shareByEmail" do
     it "returns http success" do
-      get :shareByEmail
+      get :shareByEmail, :format => :json
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET #saveSearch" do
+  describe "POST #saveSearch" do
     it "returns http success" do
-      get :saveSearch
+      post :saveSearch, :format => :json
       expect(response).to have_http_status(:success)
     end
   end
