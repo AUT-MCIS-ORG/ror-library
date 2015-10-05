@@ -15,6 +15,7 @@ before_script:
   - sleep 3 # give Web server some time to bind to sockets, etc
   - curl http://localhost:3000/search_fields/list.json
   - phantomjs google.js "Auckland,New Zealand" "Christchurch, New Zealand"
+  - phantomjs -v
 script:
   - RAILS_ENV=test rake db:migrate
   - RAILS_ENV=test rake db:seed
