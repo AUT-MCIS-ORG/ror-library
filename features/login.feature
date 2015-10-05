@@ -17,15 +17,15 @@ Feature: login page
 
   Scenario: Sign up1
     Given I am on the login page
-    When I click link "Log In"
     When I click link "Sign up"
+    #When I find ".//*[@id='new_user']/div[5]/input" click 
     When I select option "Analyst" with "user_role"
     #Then I should see "Analyst"
 
   Scenario: Sign up2
     Given I am on the login page
-    When I click link "Log In"
     When I click link "Sign up"
+    #When I find ".//*[@id='new_user']/div[5]/input" click 
     When I select option "Administrator" with "user_role"
     #Then I should see "Administrator"
 

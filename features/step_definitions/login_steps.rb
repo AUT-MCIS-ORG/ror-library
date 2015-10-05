@@ -22,6 +22,10 @@ When /^I find "([^"]*)" select "([^"]*)"$/ do |xpath1, option|
   find(:xpath, xpath1).select(option)
 end
 
+When /^I find "([^"]*)" click$/ do |xpath1|
+  find(:xpath, xpath1).click
+end
+
 Then /^I capture UI "([^"]*)"$/ do |text|
   page.should have_content(text)
 end
