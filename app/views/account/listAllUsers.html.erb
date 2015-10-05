@@ -1,2 +1,40 @@
-<h1>Account#listAllUsers</h1>
-<p>Find me in app/views/account/listAllUsers.html.erb</p>
+
+
+<%= stylesheet_link_tag 'application','https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css' %>
+
+<script type="text/javascript" src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js">
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    $('#example').DataTable( {
+        "ajax": "/account/listUsersJson.json",
+        "columns": [
+            { "data": "id" },
+            { "data": "email" },
+	    { "data": "role" },
+	    { "data": "sign_in_count" },
+	    { "data": "created_at" },
+	    { "data": "last_sign_in_at" },
+        ]
+    } );
+} );
+
+</script>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email Address</th>
+		<th>Role</th>
+		<th>Sign In Count</th>
+		<th>Registration Date</th>
+		<th>Last Sign in</th>
+            </tr>
+        </thead>
+ 
+
+    </table>

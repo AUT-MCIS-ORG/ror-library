@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get 'result/saveSearch'
 
   get 'result/saveResults'
-
+  
+   
+  get 'account/listUsersJson'
   get 'account/listAllUsers'
 
   get 'analyst/listAllPendingArticles'

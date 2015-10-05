@@ -5,11 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+############################################
+User.delete_all
+
 User.new({ :email => "admin@serler.com", :password => "password", :password_confirmation=>"password", :role=>"admin"}).save
 User.new({ :email => "moderator@serler.com", :password => "password", :password_confirmation=>"password", :role=>"moderator"}).save
 User.new({ :email => "analyst@serler.com", :password => "password", :password_confirmation=>"password", :role=>"analyst"}).save
 User.new({ :email => "regular@serler.com", :password => "password", :password_confirmation=>"password", :role=>"regular"}).save
 puts "created 4 default users: admin/moderator/analyst/regular with password: 'password'"
+
+50.times do |i|
+	User.new({ :email => "admin#{i}@serler.com", :password => "password", :password_confirmation=>"password", :role=>"admin"}).save
+	User.new({ :email => "moderator#{i}@serler.com", :password => "password", :password_confirmation=>"password", :role=>"moderator"}).save
+	User.new({ :email => "analyst#{i}@serler.com", :password => "password", :password_confirmation=>"password", :role=>"analyst"}).save
+	User.new({ :email => "regular#{i}@serler.com", :password => "password", :password_confirmation=>"password", :role=>"regular"}).save
+end
+
+############################################
+SearchField.delete_all
 
 SearchField.new({ :fieldID => "title", :fieldName => "Document Title", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "authors", :fieldName => "Authors", :fieldType=>"string"}).save
@@ -28,6 +41,9 @@ SearchField.new({ :fieldID => "benefit", :fieldName => "Research Outcome", :fiel
 
 puts "create 13 sample search conditionals"
 
+############################################
+SavedSearch.delete_all
+
 saved_search_list = [
   [ 1, "search name1", "selectField1=field1####selectField1Opt=opt1####selectField1Value=value1####selectField2=field2####selectField2Opt=opt2####selectField2Value=value2####selectField3=field3####selectField3Opt=opt3####selectField3Value=value3####selectOpt1=like####selectValue1=####" ],
   [ 1, "search name2", "selectField1=field1####selectField1Opt=opt1####selectField1Value=value1####selectField2=field2####selectField2Opt=opt2####selectField2Value=value2####selectField3=field3####selectField3Opt=opt3####selectField3Value=value3####selectOpt1=like####selectValue1=####" ],
@@ -41,6 +57,8 @@ end
 
 puts "create 4 sample search values"
 
+############################################
+Source.delete_all
 
 source_list = [
    [ "title1", "Mao Chuan Li, Allen Wang", "Abstract1...","publisher1","1999-01-01","saas,software engineering,agile","10.4018/IJSSOE.20151001",
