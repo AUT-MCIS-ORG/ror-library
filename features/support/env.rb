@@ -4,7 +4,7 @@ require 'capybara/poltergeist'
 
 Capybara.default_driver = :poltergeist
 Capybara.default_selector = :xpath
-Capybara.default_wait_time = 10
+Capybara.default_wait_time = 30
 Capybara.register_driver :poltergeist do |app|
   options = {
       :js_errors => true,
