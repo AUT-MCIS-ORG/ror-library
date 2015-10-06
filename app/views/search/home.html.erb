@@ -1,11 +1,10 @@
 <h1>Search#home</h1>
 <p>Find me in app/views/search/home.html.erb</p>
 
+
 <script type="text/javascript">
 	$(document).ready(function(){
-		var aaa = $('a:contains("Search")');
-    	aaa.addClass('disableTopButton');
-    
+		
 		$.ajax({
 			url: '/search_fields/list.json',
 			data: '',        
@@ -22,168 +21,138 @@
 
 				}); 
 
-				$("#addSelect").click(function(){
-
-					$("#removeButton").removeAttr("style");
-					var addTr = $("#selectTr").clone();
-					addTr.find("input:first").val("");
-					addTr.appendTo($("#selectTable"));
-					
-				});
 			},
 			error: function(xhr) {
                 //if some exceptions happen, please have a check at xhr.responseText
             }
         });
+
+		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
+
 	});
 </script>
 <script type="text/javascript">
-//delete current search condition
-function deleteTr(obj) {
 
-	if ($("#selectTable tr").length>1) {
-		$(obj).closest('tr').remove();
+	function deleteTr(obj) {
+
+		if ($("#selectTable tr").length>1) {
+			$(obj).closest('tr').remove();
+
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
+
+		};
+		if ($("#selectTable tr").length ===1) {
+			$("#removeButton").attr("style","display:none");
+
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
+
+		};
 
 	};
-	if ($("#selectTable tr").length ===1) {
-		$("#removeButton").attr("style","display:none");
+
+	function addSelectResult(obj){
+
+		if($("#selectTable tr").length ===1){
+			$("#removeButton").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
+			console.log($(obj).parent().html());
+			var addTr = $("#selectTr").clone(true); 
+			addTr.find("input:first").val("");
+			addTr.appendTo($("#selectTable"));
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
+
+		}else{
+			$("#removeButton").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
+			var addTr = $("#selectTr").clone(true); 
+			addTr.find("input:first").val("");
+			addTr.appendTo($("#selectTable"));
+			$(obj).parent().find("select:first").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
+
+
+		}
 
 	};
 
-}
+
+	function forDatePicker(obj){
+
+		var textForId = $(obj).find("option:selected").text();
+
+		if(textForId ==="Publication Date"){
+
+			$(obj).next().next().attr("id","datepickerStart");
+			$( "#datepickerStart" ).datepicker();
+
+		}else{
+			$("#datepickerStart").datepicker("destroy");
+			$( "#datepickerStart" ).attr("id","");
+		}
+
+
+		if(textForId ==="Authors"){
+
+			$(obj).next().next().attr("title","Authors: auther;auther;auther...");
+		}else if(textForId !=="Average Rating"){
+			$(obj).next().next().attr("title","");
+		}
+
+		if(textForId ==="Average Rating"){
+
+			$(obj).next().next().attr("title","1, 2, 3, 4, 5");
+		}else if(textForId !=="Authors"){
+			$(obj).next().next().attr("title","");
+		}
+
+	};
+
+
+	$(function() {
+		$(".hintForUser").tooltip();
+	});
+
 </script>
 
-<table>
-	<tr>
-		<td>
-<form name="searchForm" method="post" action="/result/index">
-	<p>we need a form here to save the query conditions...<br> The form action is <b>/result/index</b></p>
-	<!-- input type="hidden" name="<%=request_forgery_protection_token%>" value="<%=form_authenticity_token%>" /-->
-	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<style>
+	label {
+		display: inline-block;
+		width: 5em;
+	}
+</style>
+
+<form name="searchForm" action="/result/index">
 	
-	<input name="selectField1" value="field1"/>
-	<input name="selectField1Opt" value="opt1"/>
-	<input name="selectField1Value" value="value1" /> <br>
-	
-	<input name="selectField2" value="field2"/>
-	<input name="selectField2Opt" value="opt2"/>
-	<input name="selectField2Value" value="value2" /> <br>
-	
-	<input name="selectField3" value="field3"/>
-	<input name="selectField3Opt" value="opt3"/>
-	<input name="selectField3Value" value="value3" />
-	
-	<table border="1px" width="80%%" id="selectTable">
+	<table border="1px" width="80%" id="selectTable">
 		<tr id ="selectTr">
 			<td>
-				<select id ="selectPara" name="selectName1">
+				<select id ="selectParaCon" >
+					<option value="And">And</option>
+					<option value="Or">Or</option>
 				</select>
-				
-				<select name="selectOpt1">
-					<option value="like">Like</option>
+			</td>
+			<td>
+				<select id ="selectPara" name="selectFields" onchange="javascript:forDatePicker(this)">
+				</select>
+
+				<select name="selectOperators">
+					<option value="contains">Contains</option>
 					<option value="biggerThan">Bigger Than</option>
 					<option value="smallerThan">Smaller Than</option>
 					<option value="equals">Equals</option>
-				</select>
+				</select>			
+				<input type="input" name="selectFieldValues" value＝"" title ="" id ="" class ="hintForUser" /> 
+				<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none"; /> 
+				<input type = "button" value="+" onclick="javascript:addSelectResult(this)" id ="addSelect" />  
 				
-				<input type="input" name="selectValue1" value＝"" /> 
-				
-				<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none";/>     
+
 				<br>
 				
 			</td>      
 		</tr>   
 	</table>
 	<div>
-		<input type = "button" value="Add search condition" id ="addSelect"></input>
-	</div>
-	<div>
 		<input type="submit" value="Search" />
 	</div>
-</form>			
-			
-		</td>
-		<td>
-			Access the REST service <b>/save_search/list.json</b> to retrieve saved searches
-			<li>my saved search 1</li>
-			<li> <%= link_to "my saved search 2-/result/index?searchID=2", "/result/index?searchID=2", :method => :get %></li>
-			<li>my saved search 3</li>
-			<li>my saved search 4</li>	
-			To delete the search condition: /save_search/delete.json
-			<li>{"searchID": 6}</li>
-			To save/create a new search condition /save_search/save.json
-			<li>{"search_name":"name2","search_values":"xxxxxxxxxxxxxxxxxxxx"}</li>	
-		</td>
-	</tr>
-</table>
-
-	
-<!-- <table border="1px" width="80%%">
-	<tr>
-		<td>
-		<select>
-			<option value="title">Document Title</option>
-  			<option value="authors">Authors</option>
-  			<option value="abstract">Abstract</option>
-  			<option value="DOI">DOI</option>
-  			<option value="..">..more to come..</option>
-		</select>
-		
-		<select>
-			<option value="like">Like</option>
-  			<option value="biggerThan">Bigger Than</option>
-  			<option value="smallerThan">Smaller Than</option>
-  			<option value="equals">Equals</option>
-		</select>
-		
-		 <input type="input" /> <br>
-		<select>
-			<option value="title">Document Title</option>
-  			<option value="authors">Authors</option>
-  			<option value="abstract">Abstract</option>
-  			<option value="DOI">DOI</option>
-  			<option value="..">..more to come..</option>
-		</select>
-		
-		<select>
-			<option value="like">Like</option>
-  			<option value="biggerThan">Bigger Than</option>
-  			<option value="smallerThan">Smaller Than</option>
-  			<option value="equals">Equals</option>
-		</select>
-		
-		 <input type="input" /><br>
-		 		<select>
-			<option value="title">Document Title</option>
-  			<option value="authors">Authors</option>
-  			<option value="abstract">Abstract</option>
-  			<option value="DOI">DOI</option>
-  			<option value="..">..more to come..</option>
-		</select>
-		
-		<select>
-			<option value="like">Like</option>
-  			<option value="biggerThan">Bigger Than</option>
-  			<option value="smallerThan">Smaller Than</option>
-  			<option value="equals">Equals</option>
-		</select>
-		
-		 <input type="input" />		<br> 
-		 
-		 </td>
-		<td rowspan="2">
-			Access the REST service <b>/search/listMySavedSearches</b> to retrieve saved searches
-			<li>my saved search 1</li>
-			<li> <%= link_to "my saved search 2-/result/index?searchID=100", "/result/index?searchID=100", :method => :get %></li>
-			<li>my saved search 3</li>
-			<li>my saved search 4</li>
-			
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<input type="submit" value="Advanced Search" />
-		</td>
-	</tr>
-</table> -->
+</form>
 
