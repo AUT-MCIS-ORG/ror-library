@@ -19,6 +19,8 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+	var aaa = $('a:contains("All Users")');
+    aaa.addClass('disableTopButton');
 
     $('#example').DataTable( {
         "ajax": "/account/listUsersJson.json",

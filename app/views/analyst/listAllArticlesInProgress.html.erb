@@ -19,7 +19,9 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-
+    var aaa = $('a:contains("All Articles Being Analysed")');
+    aaa.addClass('disableTopButton');
+    	
     var table = $('#example').DataTable( {
         "ajax": "/analyst/listAllArticlesInProgressJson.json",
         dom: 'Bfrtip',

@@ -3,7 +3,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+		var aaa = $('a:contains("Search")');
+    	aaa.addClass('disableTopButton');
+    
 		$.ajax({
 			url: '/search_fields/list.json',
 			data: '',        

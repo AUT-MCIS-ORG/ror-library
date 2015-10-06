@@ -33,6 +33,6 @@ a.lianjieys:hover{ text-decoration:underline}
 /*nav*/
 .mainnav{display:block; clear:both; background:#030;}
 .logo {height: 65px; padding: 0px; }
-
+.disableTopButton{display:block; background-color:gray;}
 
 

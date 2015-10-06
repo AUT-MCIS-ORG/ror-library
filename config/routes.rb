@@ -35,8 +35,10 @@ Rails.application.routes.draw do
   get 'analyst/listAllArticlesInProgressJson'
 
   get 'moderator/listAllRejectedArticles'
-
   get 'moderator/listAllPendingArticles'
+
+  get 'moderator/listAllRejectedArticlesJson'
+  get 'moderator/listAllPendingArticlesJson'
 
   get 'search/home'
 
