@@ -1,2 +1,78 @@
-<h1>Analyst#listAllPendingArticles</h1>
-<p>Find me in app/views/analyst/listAllPendingArticles.html.erb</p>
+
+<%= stylesheet_link_tag 'application','https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css' %>
+<%= stylesheet_link_tag 'application','https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css' %>
+
+
+<script type="text/javascript" src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    var table = $('#example').DataTable( {
+        "ajax": "/analyst/listAllPendingArticlesJson.json",
+        dom: 'Bfrtip',
+    	buttons: [
+        'colvis','copy', 'excel', 'pdf', 'print'
+    	],
+    	"columns": [
+        { "data": "id" }, //0
+        { "data": "title" },
+	    { "data": "authors" },
+	    { "data": "abstract" },
+	    { "data": "publisher" },
+	    { "data": "publish_date" }, //5
+		{ "data": "doi" },
+		{ "data": "pages" },
+		{ "data": "volume" },
+		{ "data": "issue" },
+		{ "data": "avg_rating" }, //10
+		{ "data": "submitter" }
+		
+    	],
+
+		"columnDefs": [
+		            {
+		                "targets": [ 3,4,6,7,8,9 ],
+		                "visible": false
+		            }
+		        ]
+
+
+    } );
+
+} );
+
+</script>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+        <th>ID</th>
+		<th>Title</th>
+		<th>Authors</th>
+		<th>Abstract</th>
+		<th>Publisher</th>
+		<th>Publish Date</th>
+		<th>DOI</th>
+		<th>Pages</th>
+		<th>Volume</th>
+		<th>Issue</th>
+		<th>Avg Rating</th>
+		<th>Submitter</th>
+            </tr>
+        </thead>
+ 
+
+    </table>

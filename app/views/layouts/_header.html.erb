@@ -20,7 +20,7 @@
 	<li class="col-md-1 col-xs-4 btn"><%= link_to "Search", "/search/home", :method => :get %></a></li>
 	
 	<% if current_user.role == "moderator" %>
-	<li class="col-md-1 col-xs-4 btn"><%= link_to "All Articles To be Moderated", "/moderator/listAllPendingArticles", :method => :get %></li>
+	<li class="col-md-3 col-xs-12 btn"><%= link_to "All Articles To be Moderated", "/moderator/listAllPendingArticles", :method => :get %></li>
 	<li class="col-md-3 col-xs-4 btn"><%= link_to "All Articles Rejected", "/moderator/listAllRejectedArticles", :method => :get %></li>	
 	<% elsif current_user.role == "analyst" %>
 	<li class="col-md-3 col-xs-12 btn"><%= link_to "All Articles To be Analysed", "/analyst/listAllPendingArticles", :method => :get %></li>

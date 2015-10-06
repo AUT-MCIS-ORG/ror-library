@@ -29,8 +29,10 @@ Rails.application.routes.draw do
   get 'account/listAllUsers'
 
   get 'analyst/listAllPendingArticles'
-
   get 'analyst/listAllArticlesInProgress'
+  
+  get 'analyst/listAllPendingArticlesJson'
+  get 'analyst/listAllArticlesInProgressJson'
 
   get 'moderator/listAllRejectedArticles'
 
