@@ -126,12 +126,13 @@
 	<table border="1px" width="80%" id="selectTable">
 		<tr id ="selectTr">
 			<td>
-				<select id ="selectParaCon" >
+				<select id ="selectParaCon" name="selectConnectorX" >
 					<option value="And">And</option>
 					<option value="Or">Or</option>
 				</select>
 			</td>
 			<td>
+
 				<select id ="selectPara" name="selectFields" onchange="javascript:forDatePicker(this)">
 				</select>
 
@@ -141,6 +142,8 @@
 					<option value="smallerThan">Smaller Than</option>
 					<option value="equals">Equals</option>
 				</select>			
+
+
 				<input type="input" name="selectFieldValues" value＝"" title ="" id ="" class ="hintForUser" /> 
 				<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none"; /> 
 				<input type = "button" value="+" onclick="javascript:addSelectResult(this)" id ="addSelect" />  
