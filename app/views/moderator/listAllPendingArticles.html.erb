@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	var aaa = $('a:contains("All Articles To be Moderated")');
+	var aaa = $('a:contains("All Articles To be Moderated")').parent();
     aaa.addClass('disableTopButton');
 
     var table = $('#example').DataTable( {

@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-    var aaa = $('a:contains("All Articles Being Analysed")');
+    var aaa = $('a:contains("All Articles Being Analysed")').parent();
     aaa.addClass('disableTopButton');
     	
     var table = $('#example').DataTable( {

@@ -4,6 +4,11 @@ class ResultController < ApplicationController
     if searchID.to_s.strip.length == 0
       #there is not searchID, get the form conditions
       resultS = ""
+
+      #params[:selectConnectorX].each_with_index {|value, index| puts "[#{index}] == #{value}" }
+      #params[:selectFields].each_with_index {|value, index| puts "[#{index}] == #{value}" }
+      #params[:selectOperators].each_with_index {|value, index| puts "[#{index}] == #{value}" }
+      
       params.each do |key, value|
         if key.to_s.start_with?("select")
           resultS << key + "=" + value + "####"
