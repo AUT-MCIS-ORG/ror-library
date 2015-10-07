@@ -19,7 +19,7 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-	var aaa = $('a:contains("All Users")');
+	var aaa = $('a:contains("All Users")').parent();
     aaa.addClass('disableTopButton');
 
     $('#example').DataTable( {
