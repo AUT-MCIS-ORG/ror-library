@@ -1,12 +1,13 @@
-<h1>Search#home</h1>
-<p>Find me in app/views/search/home.html.erb</p>
-
 
 <script type="text/javascript">
+$(document).ready(function(){
+		var aaa = $('a:contains("Search")').parent();
+    	aaa.addClass('disableTopButton');
+   });
+
+
 	$(document).ready(function(){
-        var aaa = $('a:contains("Search")').parent();
-	    aaa.addClass('disableTopButton');
-	
+		
 		$.ajax({
 			url: '/search_fields/list.json',
 			data: '',        
@@ -95,7 +96,7 @@
 
 		if(textForId ==="Authors"){
 
-			$(obj).next().next().attr("title","Authors: author one,author two,authorr...");
+			$(obj).next().next().attr("title","Authors: auther;auther;auther...");
 		}else if(textForId !=="Average Rating"){
 			$(obj).next().next().attr("title","");
 		}
@@ -124,8 +125,11 @@
 </style>
 
 <form name="searchForm" action="/result/index">
-	
-	<table border="1px" width="80%" id="selectTable">
+
+	<div class="text-center">
+
+	<table class ="table" width="80%" id="selectTable">
+
 		<tr id ="selectTr">
 			<td>
 				<select id ="selectParaCon" name="selectConnectorX" >
@@ -155,9 +159,15 @@
 				
 			</td>      
 		</tr>   
-	</table>
+	
+	</table></div>
 	<div>
-		<input type="submit" value="Search" />
+
+		<input type="submit" value="Click me to search" class="btn btn-success center-block" />
+
 	</div>
+	<h5>You can search the articals in this page by your keywords. </br>Click "Click me to search" button to search after you fill the search condition form.
+</br> Click the "+" button to add more search conditions.</br>
+Click the "X" button to delete search conditions. </h5>
 </form>
 
