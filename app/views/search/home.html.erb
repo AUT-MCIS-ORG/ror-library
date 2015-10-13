@@ -1,170 +1,167 @@
-
 <script type="text/javascript">
-	$(document).ready(function(){
+	$(document).ready(function() {
 		var aaa = $('a:contains("Search")').parent();
 		aaa.addClass('disableTopButton');
 	});
 
-/* 
-Function: Dynamically read the values for Document Title by aJax
-Author: Zhe Wang
-*/
-$(document).ready(function(){
-
-	$.ajax({
-		url: '/search_fields/list.json',
-		data: '',        
-		type: 'get',
-		dataType: 'json',
-		contentType: 'application/json;charset=utf-8',
-		cache: false,
-		success: function(data, status) {
-			$(data.searchFields).each(function(){ 
-				var option = $("<option>"+this.fieldName+"</option>");
-				option.val(this.fieldID);
-				option.appendTo($("#selectPara"));
-
-			}); 
-
-		},
-		error: function(xhr) {
-                //if some exceptions happen, please have a check at xhr.responseText
-            }
-        });
-// Hide the first select <td> for And or 
-$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
-
-});
-</script>
-<script type="text/javascript">
-/* 
-Function: Delete the search condition
-Author: Zhe Wang
-*/
-
-function deleteTr(obj) {
-
-	if ($("#selectTable tr").length>1) {
-		$(obj).closest('tr').remove();
-
-		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
-
-	};
-	if ($("#selectTable tr").length ===1) {
-		$("#removeButton").attr("style","display:none");
-
-		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
-
-	};
-
-};
-
-/* 
-Function: Add the search condition
-Author: Zhe Wang
-*/
-function addSelectResult(obj){
-
-	if($("#selectTable tr").length ===1){
-		$("#removeButton").removeAttr("style");
-		$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
-		var addTr = $("#selectTr").clone(true); 
-		addTr.find("input:first").val("");
-		addTr.appendTo($("#selectTable"));
-		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
-
-	}else{
-		$("#removeButton").removeAttr("style");
-		$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
-		var addTr = $("#selectTr").clone(true); 
-		addTr.find("input:first").val("");
-		addTr.appendTo($("#selectTable"));
-		$(obj).parent().find("select:first").removeAttr("style");
-		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style","display:none");
-
-
-	}
-
-};
-
-/* 
-Function: Datepicker calling and hind calling for search conditions
-Author: Zhe Wang
-*/
-function forDatePicker(obj){
-
-	var textForId = $(obj).find("option:selected").text();
-
-	if(textForId ==="Publication Date"){
-
-		$(obj).next().next().attr("id","datepickerStart");
-		$( "#datepickerStart" ).datepicker();
-
-	}else{
-		$("#datepickerStart").datepicker("destroy");
-		$( "#datepickerStart" ).attr("id","");
-	}
-
-
-	if(textForId ==="Authors"){
-
-		$(obj).next().next().attr("title","Authors: auther;auther;auther...");
-	}else if(textForId !=="Average Rating"){
-		$(obj).next().next().attr("title","");
-	}
-
-	if(textForId ==="Average Rating"){
-
-		$(obj).next().next().attr("title","1, 2, 3, 4, 5");
-	}else if(textForId !=="Authors"){
-		$(obj).next().next().attr("title","");
-	}
-
-};
-
-//calling tooltip() plugin
-$(function() {
-	$(".hintForUser").tooltip();
-});
-
-</script>
-
-<script type="text/javascript">
-/*
-Function: Dynamically read saved search by aJax
-Author: Zhe Wang
-*/
-	$(document).ready(function(){
+	/*
+	 Function: Dynamically read the values for Document Title by aJax
+	 Author: Zhe Wang
+	 */
+	$(document).ready(function() {
 
 		$.ajax({
-			url: '/save_search/list.json',
-			data: '',        
-			type: 'get',
-			dataType: 'json',
-			contentType: 'application/json;charset=utf-8',
-			cache: false,
-			success: function(data, status) {
-				
+			url : '/search_fields/list.json',
+			data : '',
+			type : 'get',
+			dataType : 'json',
+			contentType : 'application/json;charset=utf-8',
+			cache : false,
+			success : function(data, status) {
+				$(data.searchFields).each(function() {
+					var option = $("<option>" + this.fieldName + "</option>");
+					option.val(this.fieldID);
+					option.appendTo($("#selectPara"));
+
+				});
+
+			},
+			error : function(xhr) {
+				//if some exceptions happen, please have a check at xhr.responseText
+			}
+		});
+		// Hide the first select <td> for And or
+		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+	}); 
+</script>
+<script type="text/javascript">
+	/*
+	 Function: Delete the search condition
+	 Author: Zhe Wang
+	 */
+
+	function deleteTr(obj) {
+
+		if ($("#selectTable tr").length > 1) {
+			$(obj).closest('tr').remove();
+
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+		};
+		if ($("#selectTable tr").length === 1) {
+			$("#removeButton").attr("style", "display:none");
+
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+		};
+
+	};
+
+	/*
+	 Function: Add the search condition
+	 Author: Zhe Wang
+	 */
+	function addSelectResult(obj) {
+
+		if ($("#selectTable tr").length === 1) {
+			$("#removeButton").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
+			var addTr = $("#selectTr").clone(true);
+			addTr.find("input:first").val("");
+			addTr.appendTo($("#selectTable"));
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+		} else {
+			$("#removeButton").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
+			var addTr = $("#selectTr").clone(true);
+			addTr.find("input:first").val("");
+			addTr.appendTo($("#selectTable"));
+			$(obj).parent().find("select:first").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+		}
+
+	};
+
+	/*
+	 Function: Datepicker calling and hind calling for search conditions
+	 Author: Zhe Wang
+	 */
+	function forDatePicker(obj) {
+
+		var textForId = $(obj).find("option:selected").text();
+
+		if (textForId === "Publication Date") {
+
+			$(obj).next().next().attr("id", "datepickerStart");
+			$("#datepickerStart").datepicker();
+
+		} else {
+			$("#datepickerStart").datepicker("destroy");
+			$("#datepickerStart").attr("id", "");
+		}
+
+		if (textForId === "Authors") {
+
+			$(obj).next().next().attr("title", "Authors: auther;auther;auther...");
+		} else if (textForId !== "Average Rating") {
+			$(obj).next().next().attr("title", "");
+		}
+
+		if (textForId === "Average Rating") {
+
+			$(obj).next().next().attr("title", "1, 2, 3, 4, 5");
+		} else if (textForId !== "Authors") {
+			$(obj).next().next().attr("title", "");
+		}
+
+	};
+
+	//calling tooltip() plugin
+	$(function() {
+		$(".hintForUser").tooltip();
+	});
+
+</script>
+
+<script type="text/javascript">
+	/*
+	 Function: Dynamically read saved search by aJax
+	 Author: Zhe Wang
+	 */
+	$(document).ready(function() {
+
+		$.ajax({
+			url : '/save_search/list.json',
+			data : '',
+			type : 'get',
+			dataType : 'json',
+			contentType : 'application/json;charset=utf-8',
+			cache : false,
+			success : function(data, status) {
+
 				var tableRecord = $("<table border=\"1\">");
 				tableRecord.appendTo($("#searchRecordLand"));
 				for (var i = data.count - 1; i >= 0; i--) {
-					var tr =$("<tr></tr>");
+					var tr = $("<tr></tr>");
 					tr.appendTo(tableRecord);
 
 					for (var j = 2 - 1; j >= 0; j--) {
-						if (j===1) {
+						if (j === 1) {
 
 							var tdPara1 = data.savedSearches[i].id;
-							var tdPara2 = data.savedSearches[i].search_name;							
-							var linkRb = '<a href="#" onclick="searchByID('+tdPara1+')">'+tdPara2+'</a>';							
-							var td=$("<td>"+linkRb+"</td>");
+							var tdPara2 = data.savedSearches[i].search_name;
+							var linkRb = '<a href="#" onclick="searchByID(' + tdPara1 + ');return false;">' + tdPara2 + '</a>';
+							var td = $("<td>" + linkRb + "</td>");
 							td.appendTo(tr);
 
-						}else{
+						} else {
 
 							var tdPara3 = data.savedSearches[i].id;
 							var linkButton = '<input type="button" value="X" onclick="deleteX(' + tdPara3 + ')">';
-							var td=$("<td>"+linkButton+"</td>");
+							var td = $("<td>" + linkButton + "</td>");
 							td.appendTo(tr);
 
 						};
@@ -175,48 +172,44 @@ Author: Zhe Wang
 				$("#searchRecordLand").append("</table>");
 
 			},
-			error: function(xhr) {
-                //if some exceptions happen, please have a check at xhr.responseText
-            }
-        });
+			error : function(xhr) {
+				//if some exceptions happen, please have a check at xhr.responseText
+			}
+		});
 
+	})
+	/*
+	 Function: Delete current saved search
+	 Author: Zhe Wang
+	 */
+	function deleteX(para) {
 
-})
-/*
-Function: Delete current saved search
-Author: Zhe Wang
-*/
-function deleteX(para){
+		$.ajax({
+			url: '/save_search/delete?searchID='+para,
+			data : '',
+			type : 'DELETE',
+			dataType : 'json',
+			contentType : 'application/json;charset=utf-8',
+			cache : false,
+			success : function(data, status) {
+				// alert("data is: "+ data.result+",code is: "+status);
+			},
+			error : function(xhr) {
+				//if some exceptions happen, please have a check at xhr.responseText
+			}
+		});
 
+	}
 
-	$.ajax({
-		url: 'Delete?seachID=1',
-		//url: 'Delete?seachID='+1+"'",
-		data: '',        
-		type: 'DELETE',
-		dataType: 'json',
-		contentType: 'application/json;charset=utf-8',
-		cache: false,
-		success: function(data, status) {
-			
-
-		},
-		error: function(xhr) {
-                //if some exceptions happen, please have a check at xhr.responseText
-            }
-        });
-
-}
-
-/**
- * Set the searchID value in the hidden form, and then submit the form
- * with the hidden searchID field
- */
-function searchByID(id){
-	var hiddenForm = document.forms["searchFormHidden"];
-	hiddenForm.searchID.value = id;
-	hiddenForm.submit();
-}
+	/**
+	 * Set the searchID value in the hidden form, and then submit the form
+	 * with the hidden searchID field
+	 */
+	function searchByID(id) {
+		var hiddenForm = document.forms["searchFormHidden"];
+		hiddenForm.searchID.value = id;
+		hiddenForm.submit();
+	}
 
 </script>
 
@@ -226,56 +219,50 @@ function searchByID(id){
 		width: 5em;
 	}
 </style>
-<form name="searchFormHidden" action="/result/index">
+<form name="searchFormHidden" action="/result/index" method="post">
 	<input type="hidden" name="searchID" value="dddd" />
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 </form>
-<form name="searchForm" action="/result/index">
+<table width="100%" border="1">
+	<tr>
+		<td width="80%">
+		<form name="searchForm" action="/result/index" method="post">
+			<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+				<table  width="100%"  id="selectTable" border="1">
 
-	<div class="text-center">
+					<tr id ="selectTr">
+						<td>
+						<select id ="selectParaCon" name="selectConnectorX" >
+							<option value="And">And</option>
+							<option value="Or">Or</option>
+						</select></td>
+						<td><select id ="selectPara" name="selectFields" onchange="javascript:forDatePicker(this)"></select>
+						<select name="selectOperators">
+							<option value="contains">Contains</option>
+							<option value="biggerThan">Bigger Than</option>
+							<option value="smallerThan">Smaller Than</option>
+							<option value="equals">Equals</option>
+						</select>
+						<input type="input" name="selectFieldValues" value＝"" title ="" id ="" class ="hintForUser" />
+						<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none"; />
+						<input type = "button" value="+" onclick="javascript:addSelectResult(this)" id ="addSelect" />
+						<br>
+						</td>
+					</tr>
 
-		<table class ="table" width="80%" id="selectTable">
+				</table>
 
-			<tr id ="selectTr">
-				<td>
-					<select id ="selectParaCon" name="selectConnectorX" >
-						<option value="And">And</option>
-						<option value="Or">Or</option>
-					</select>
-				</td>
-				<td>
+			<div>
 
-					<select id ="selectPara" name="selectFields" onchange="javascript:forDatePicker(this)">
-					</select>
+				<input type="submit" value="Click me to search" class="btn btn-success center-block" />
 
-					<select name="selectOperators">
-						<option value="contains">Contains</option>
-						<option value="biggerThan">Bigger Than</option>
-						<option value="smallerThan">Smaller Than</option>
-						<option value="equals">Equals</option>
-					</select>			
+			</div>
 
-
-					<input type="input" name="selectFieldValues" value＝"" title ="" id ="" class ="hintForUser" /> 
-					<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none"; /> 
-					<input type = "button" value="+" onclick="javascript:addSelectResult(this)" id ="addSelect" />  
-
-
-					<br>
-
-				</td>      
-			</tr>   
-
-		</table></div>
-		<div>
-
-			<input type="submit" value="Click me to search" class="btn btn-success center-block" />
-
-		</div>
-		<div id ="searchRecordLand">
-
-		</div>
-		<h5>You can search the articals in this page by your keywords. </br>Click "Click me to search" button to search after you fill the search condition form.
-		</br> Click the "+" button to add more search conditions.</br>
-		Click the "X" button to delete search conditions. </h5>
-	</form>
+			<h5>You can search the articals in this page by your keywords. </br>Click "Click me to search" button to search after you fill the search condition form.
+			</br> Click the "+" button to add more search conditions.</br>
+			Click the "X" button to delete search conditions. </h5>
+		</form></td>
+		<td><div id ="searchRecordLand"></div></td>
+	</tr>
+</table>
 
