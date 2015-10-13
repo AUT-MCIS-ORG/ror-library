@@ -155,8 +155,8 @@ Author: Zhe Wang
 						if (j===1) {
 
 							var tdPara1 = data.savedSearches[i].id;
-							var tdPara2 = data.savedSearches[i].search_name;
-							var linkRb ='<a href= "' + '/result/index?searchID=' + tdPara1 + '">' + tdPara2 + '</a>';
+							var tdPara2 = data.savedSearches[i].search_name;							
+							var linkRb = '<a href="#" onclick="searchByID('+tdPara1+')">'+tdPara2+'</a>';							
 							var td=$("<td>"+linkRb+"</td>");
 							td.appendTo(tr);
 
@@ -208,6 +208,16 @@ function deleteX(para){
 
 }
 
+/**
+ * Set the searchID value in the hidden form, and then submit the form
+ * with the hidden searchID field
+ */
+function searchByID(id){
+	var hiddenForm = document.forms["searchFormHidden"];
+	hiddenForm.searchID.value = id;
+	hiddenForm.submit();
+}
+
 </script>
 
 <style>
@@ -216,7 +226,9 @@ function deleteX(para){
 		width: 5em;
 	}
 </style>
-
+<form name="searchFormHidden" action="/result/index">
+	<input type="hidden" name="searchID" value="dddd" />
+</form>
 <form name="searchForm" action="/result/index">
 
 	<div class="text-center">
