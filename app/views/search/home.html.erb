@@ -233,18 +233,18 @@
 
 						<tr id ="selectTr">
 							<td>
-								<select id ="selectParaCon" name="selectConnectorX" >
-									<option value="And">And</option>
-									<option value="Or">Or</option>
+								<select id ="selectParaCon" name="selectConnectorX[]" >
+									<option value="AND">And</option>
+									<option value="OR">Or</option>
 								</select></td>
-								<td><select id ="selectPara" name="selectFields" onchange="javascript:forDatePicker(this)"></select>
-									<select name="selectOperators">
+								<td><select id ="selectPara" name="selectFields[]" onchange="javascript:forDatePicker(this)"></select>
+									<select name="selectOperators[]">
 										<option value="contains">Contains</option>
-										<option value="biggerThan">Bigger Than</option>
-										<option value="smallerThan">Smaller Than</option>
+										<option value="biggerThan">Greater Than or Equal</option>
+										<option value="smallerThan">Less Than or Equal</option>
 										<option value="equals">Equals</option>
 									</select>
-									<input type="input" name="selectFieldValues" value＝"" title ="" id ="" class ="hintForUser" />
+									<input type="input" name="selectFieldValues[]" value＝"" title ="" id ="" class ="hintForUser" />
 									<input type="button" value="x" onclick="javascript:deleteTr(this)" id ="removeButton" style ="display:none"; />
 									<input type = "button" value="+" onclick="javascript:addSelectResult(this)" id ="addSelect" />
 									<br>
