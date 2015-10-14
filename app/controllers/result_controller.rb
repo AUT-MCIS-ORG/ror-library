@@ -21,10 +21,10 @@ class ResultController < ApplicationController
       #@searchString = resultS
     else
       #search for the search string saved in DB
-      puts "search for ID: #{searchID}, user: #{current_user.id}"      
+      # puts "search for ID: #{searchID}, user: #{current_user.id}"      
       searchRow = SavedSearch.find_by user_id: current_user.id, id: searchID
       
-      @searchString = searchRow.search_values
+      @searchString = Base64.encode64(searchRow.search_values)
     end
 
   end

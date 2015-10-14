@@ -1,9 +1,13 @@
+require 'base64'
+
 class SaveSearchController < ApplicationController
   def save
 
     name = params[:search_name]
     value = params[:search_values]
-    rc = SavedSearch.create( user_id: current_user.id, search_name: name, search_values: value)
+    decodeV = Base64.decode64(value)
+    
+    rc = SavedSearch.create( user_id: current_user.id, search_name: name, search_values: decodeV)
     if rc != nil
       @ok = "success"
     else
