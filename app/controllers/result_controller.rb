@@ -1,3 +1,5 @@
+require 'base64'
+
 class ResultController < ApplicationController
   def index
     searchID = params[:searchID]
@@ -9,12 +11,14 @@ class ResultController < ApplicationController
       #params[:selectFields].each_with_index {|value, index| puts "[#{index}] == #{value}" }
       #params[:selectOperators].each_with_index {|value, index| puts "[#{index}] == #{value}" }
       
-      params.each do |key, value|
-        if key.to_s.start_with?("select")
-          resultS << key + "=" + value + "####"
-        end  
-      end
-      @searchString = resultS
+      json = params.to_json
+      @searchString = Base64.encode64(json)
+      
+      #puts "json: " + json
+      #puts "code: " + code64 
+      #puts "decode: " + Base64.decode64(code64)
+
+      #@searchString = resultS
     else
       #search for the search string saved in DB
       puts "search for ID: #{searchID}, user: #{current_user.id}"      
@@ -24,6 +28,8 @@ class ResultController < ApplicationController
     end
 
   end
+
+
 
   # obsolete, moved in /saved_search/list
   #def listMySavedSearches
@@ -55,9 +61,43 @@ class ResultController < ApplicationController
   
   def getResults
     # read the search condition from the json request
-    searchConditions = params[:searchConditions]  
-    puts "Json request searchConditions: #{searchConditions}"
-    sql = "select sources.*,evidences.se_method,evidences.se_methodology,evidences.benefit, evidences.result, evidences.participants , evidences.metric,  evidences.context from evidences, sources where sources.id = evidences.source_id"
+    searchConditions = params[:searchConditions] 
+    json = Base64.decode64(searchConditions)
+
+    oldParms = ActiveSupport::JSON.decode(json)
+    whereClause = ""
+    
+    oldParms["selectConnectorX"].length.times do |i|      
+      if i > 0 
+        whereClause += " "+oldParms["selectConnectorX"][i]
+      end
+      sqlFrag = " "+ getSQLFrag(oldParms["selectFields"][i], oldParms["selectOperators"][i], oldParms["selectFieldValues"][i])
+      whereClause += sqlFrag
+    end 
+    
+    
+    sql = "select sources.*,evidences.se_method,evidences.se_methodology,evidences.benefit, evidences.result, evidences.participants , evidences.metric,  evidences.context from sources left join evidences on sources.id = evidences.source_id"
+    sql =  sql + " where " + whereClause
+    #puts "SQL Clause: " +sql
     @rows = Source.find_by_sql(sql) 
   end
+  
+  def getSQLFrag(field,op,value)
+    unless field and op and value
+      sql = ""
+    end
+    
+    if(op == 'contains') 
+      sql = field + ' like ' +"'%#{value}%'"
+    elsif (op == 'biggerThan')
+       sql =  field + ' >= ' + value
+    elsif (op == 'smallerThan')
+      sql =  field + ' <= ' + value
+    elsif (op == 'equals')
+      sql =  field + ' =' + "'#{value}'"    
+    end
+    
+    return sql; 
+  end
+  
 end

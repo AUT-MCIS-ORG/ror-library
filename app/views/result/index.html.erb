@@ -13,7 +13,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"></script>
 
-<input size="120" type="hidden" name="searchString" value="<%= @searchString %>"/>
+<input size="120" type="hidden" id="searchString" name="searchString" value="<%= @searchString %>"/>
 
 
 <script type="text/javascript">
@@ -21,7 +21,12 @@
 $(document).ready(function() {
 
     var table = $('#example').DataTable( {
-        "ajax": "/result/getResults.json?searchConditions=<%= @searchString %>",
+        "ajax": {
+        	"url": '/result/getResults.json',
+            "data": function ( d ) {
+                d.searchConditions = $('#searchString').val();
+            }
+        },
         dom: 'Bfrtip',
     	buttons: [
         'colvis','copy', 'excel', 'pdf', 'print'
