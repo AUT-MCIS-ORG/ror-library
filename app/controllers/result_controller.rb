@@ -86,9 +86,9 @@ class ResultController < ApplicationController
     unless field and op and value
       sql = ""
     end
-    
+    value = value.upcase
     if(op == 'contains') 
-      sql = field + ' like ' +"'%#{value}%'"
+      sql = "UPPER(" + field + ') like ' +"'%#{value}%'"
     elsif (op == 'biggerThan')
        sql =  field + ' >= ' + value
     elsif (op == 'smallerThan')
