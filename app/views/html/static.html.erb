@@ -1,0 +1,377 @@
+<html><head>
+  <title>SERLER</title>
+  <link rel="stylesheet" media="all" href="/assets/application-4f3ae1d65daf910f8046e5ab3c0fc4e4.css" data-turbolinks-track="true">
+  <script src="/assets/application-1b166b7d1709a1303d9088cc08eecccf.js" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="6R16beYFXnPVGYyyfmvrzHYH/TmxDMCu+vrHt0YGxkhUHPIDu61y4CbG96vY9LmOY1t8xTmFTrD6LJ1ruYjyvg==">
+</head>
+<body>
+	
+
+<div class="tophearder">
+<div class="container">
+
+<div class="subtitle2">	
+	<span>Welcome admin@serler.com  <u><a rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></u></span>
+</div>
+<div class="col-md-12 col-xs-12 padding0 ">
+<a href="#" class="logo"> <img src="/assets/b_logo-38e6b1e82f3fad23871badd60451fc95.png" alt="B logo"></a>
+<p class="subtitle">SOFTWARE ENGINEERING RESEARCH LAB EVIDENCE REPOSITORY</p>
+</div>
+
+<div class="pull-right col-xs-12 padding0">
+
+<ul class="list-inline help">
+
+	<li class="col-md-1 col-xs-4 btn"><a data-method="get" href="/welcome/index">Home</a></li>	
+	<li class="col-md-1 col-xs-4 btn disableTopButton"><a data-method="get" href="/search/home">Search</a></li>
+	
+	<li class="col-md-2 col-xs-4 btn"><a data-method="get" href="/analyst/listAllPendingArticles">All Articles To be Analysed</a></li>
+	<li class="col-md-2 col-xs-4 btn"><a data-method="get" href="/analyst/listAllArticlesInProgress">All Articles Being Analysed</a></li>
+	<li class="col-md-2 col-xs-4 btn"><a data-method="get" href="/moderator/listAllRejectedArticles">All Articles Rejected</a></li>
+	<li class="col-md-1 col-xs-4 btn"><a data-method="get" href="/account/listAllUsers">All Users</a></li>
+   </ul></div>
+</div>
+</div>
+
+<div class="container">
+
+
+
+   
+<script type="text/javascript">
+	$(document).ready(function() {
+		var aaa = $('a:contains("Search")').parent();
+		aaa.addClass('disableTopButton');
+	});
+
+	/*
+	 Function: Dynamically read the values for Document Title by aJax
+	 Author: Zhe Wang
+	 */
+	 $(document).ready(function() {
+
+	 	$.ajax({
+	 		url : '/search_fields/list.json',
+	 		data : '',
+	 		type : 'get',
+	 		dataType : 'json',
+	 		contentType : 'application/json;charset=utf-8',
+	 		cache : false,
+	 		success : function(data, status) {
+	 			$(data.searchFields).each(function() {
+	 				var option = $("<option>" + this.fieldName + "</option>");
+	 				option.val(this.fieldID);
+	 				option.appendTo($("#selectPara"));
+
+	 			});
+
+	 		},
+	 		error : function(xhr) {
+				//if some exceptions happen, please have a check at xhr.responseText
+			}
+		});
+		// Hide the first select <td> for And or
+		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+	}); 
+	</script>
+	<script type="text/javascript">
+	/*
+	 Function: Delete the search condition
+	 Author: Zhe Wang
+	 */
+
+	 function deleteTr(obj) {
+
+	 	if ($("#selectTable tr").length > 1) {
+	 		$(obj).closest('tr').remove();
+
+	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+	 	};
+	 	if ($("#selectTable tr").length === 1) {
+	 		$("#removeButton").attr("style", "display:none");
+
+	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+	 	};
+
+	 };
+
+	/*
+	 Function: Add the search condition
+	 Author: Zhe Wang
+	 */
+	 function addSelectResult(obj) {
+
+	 	if ($("#selectTable tr").length === 1) {
+	 		$("#removeButton").removeAttr("style");
+	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
+	 		var addTr = $("#selectTr").clone(true);
+	 		addTr.find("input:first").val("");
+	 		addTr.appendTo($("#selectTable"));
+	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+	 	} else {
+	 		$("#removeButton").removeAttr("style");
+	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
+	 		var addTr = $("#selectTr").clone(true);
+	 		addTr.find("input:first").val("");
+	 		addTr.appendTo($("#selectTable"));
+	 		$(obj).parent().find("select:first").removeAttr("style");
+	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+	 	}
+
+	 };
+
+	/*
+	 Function: Datepicker calling and hind calling for search conditions
+	 Author: Zhe Wang
+	 */
+	 function forDatePicker(obj) {
+
+	 	var textForId = $(obj).find("option:selected").text();
+
+	 	if (textForId === "Publication Date") {
+
+	 		$(obj).next().next().attr("id", "datepickerStart");
+	 		$("#datepickerStart").datepicker();
+
+	 	} else {
+	 		$("#datepickerStart").datepicker("destroy");
+	 		$("#datepickerStart").attr("id", "");
+	 	}
+
+	 	if (textForId === "Authors") {
+
+	 		$(obj).next().next().attr("title", "Authors: auther;auther;auther...");
+	 	} else if (textForId !== "Average Rating") {
+	 		$(obj).next().next().attr("title", "");
+	 	}
+
+	 	if (textForId === "Average Rating") {
+
+	 		$(obj).next().next().attr("title", "1, 2, 3, 4, 5");
+	 	} else if (textForId !== "Authors") {
+	 		$(obj).next().next().attr("title", "");
+	 	}
+
+	 };
+
+	//calling tooltip() plugin
+	$(function() {
+		$(".hintForUser").tooltip();
+	});
+
+</script>
+
+<script type="text/javascript">
+	/*
+	 Function: Dynamically read saved search by aJax
+	 Author: Zhe Wang
+	 */
+	 $(document).ready(function() {
+
+	 	$.ajax({
+	 		url : '/save_search/list.json',
+	 		data : '',
+	 		type : 'get',
+	 		dataType : 'json',
+	 		contentType : 'application/json;charset=utf-8',
+	 		cache : false,
+	 		success : function(data, status) {
+
+	 			var tableRecord = $("<table border=\"1\">");
+	 			tableRecord.appendTo($("#searchRecordLand"));
+	 			for (var i = data.count - 1; i >= 0; i--) {
+	 				var tr = $("<tr></tr>");
+	 				tr.appendTo(tableRecord);
+
+	 				for (var j = 2 - 1; j >= 0; j--) {
+	 					if (j === 1) {
+
+	 						var tdPara1 = data.savedSearches[i].id;
+	 						var tdPara2 = data.savedSearches[i].search_name;
+	 						var linkRb = '<a href="#" onclick="searchByID(' + tdPara1 + ');return false;">' + tdPara2 + '</a>';
+	 						var td = $("<td>" + linkRb + "</td>");
+	 						td.appendTo(tr);
+
+	 					} else {
+
+	 						var tdPara3 = data.savedSearches[i].id;
+	 						var linkButton = '<input type="button" value="X" onclick="deleteX(' + tdPara3 + ',' + 'this' + ')">';
+	 						var td = $("<td>" + linkButton + "</td>");
+	 						td.appendTo(tr);
+
+	 					};
+
+	 				};
+	 			};
+
+	 			$("#searchRecordLand").append("</table>");
+
+	 		},
+	 		error : function(xhr) {
+				//if some exceptions happen, please have a check at xhr.responseText
+			}
+		});
+
+})
+	/*
+	 Function: Delete current saved search
+	 Author: Zhe Wang
+	 */
+	 function deleteX(para, obj) {
+
+	 	$.ajax({
+	 		url: '/save_search/delete?searchID='+para,
+	 		data : '',
+	 		type : 'DELETE',
+	 		dataType : 'json',
+	 		contentType : 'application/json;charset=utf-8',
+	 		cache : false,
+	 		success : function(data, status) {
+	 			$(obj).closest('tr').remove();
+				 //alert("data is: "+ data.result+",code is: "+status);
+				},
+				error : function(xhr) {
+				//if some exceptions happen, please have a check at xhr.responseText
+			}
+		});
+
+	 }
+
+	/**
+	 * Set the searchID value in the hidden form, and then submit the form
+	 * with the hidden searchID field
+	 */
+	 function searchByID(id) {
+	 	var hiddenForm = document.forms["searchFormHidden"];
+	 	hiddenForm.searchID.value = id;
+	 	hiddenForm.submit();
+	 }
+
+	</script>
+
+	<style>
+		label {
+			display: inline-block;
+			width: 5em;
+		}
+	</style>
+	<form name="searchFormHidden" action="/result/index" method="post">
+		<input type="hidden" name="searchID" value="dddd">
+		<input type="hidden" name="authenticity_token" id="authenticity_token" value="6R16beYFXnPVGYyyfmvrzHYH/TmxDMCu+vrHt0YGxkhUHPIDu61y4CbG96vY9LmOY1t8xTmFTrD6LJ1ruYjyvg==">
+	</form>
+	<table width="100%" border="1">
+		<tbody><tr>
+			<td width="80%">
+				<form name="searchForm" action="/result/index" method="post">
+					<input type="hidden" name="authenticity_token" id="authenticity_token" value="6R16beYFXnPVGYyyfmvrzHYH/TmxDMCu+vrHt0YGxkhUHPIDu61y4CbG96vY9LmOY1t8xTmFTrD6LJ1ruYjyvg==">
+					<table width="100%" id="selectTable" border="1">
+
+						<tbody><tr id="selectTr">
+							<td>
+								<select id="selectParaCon" name="selectConnectorX[]" style="display:none">
+									<option value="AND">And</option>
+									<option value="OR">Or</option>
+								</select></td>
+								<td><select id="selectPara" name="selectFields[]" onchange="javascript:forDatePicker(this)"><option value="title">Document Title</option><option value="authors">Authors</option><option value="abstract">Abstract</option><option value="doi">DOI - Digital Object Identifier</option><option value="avg_rating">Average Rating</option><option value="publish_date">Publication Date</option><option value="pages">Pages</option><option value="Journal">Journal</option><option value="se_method">SE methods or practies</option><option value="se_methodology">SE methodology</option><option value="research_methods">Research Method</option><option value="benefit">Research Outcome</option></select>
+									<select name="selectOperators[]">
+										<option value="contains">Contains</option>
+										<option value="biggerThan">Greater Than or Equal</option>
+										<option value="smallerThan">Less Than or Equal</option>
+										<option value="equals">Equals</option>
+									</select>
+									<input type="input" name="selectFieldValues[]" value＝""="" title="" id="" class="hintForUser">
+									<input type="button" value="x" onclick="javascript:deleteTr(this)" id="removeButton" ;="">
+									<input type="button" value="+" onclick="javascript:addSelectResult(this)" id="addSelect">
+									<br>
+								</td>
+							</tr>
+
+						<tr id="selectTr">
+							<td>
+								<select id="selectParaCon" name="selectConnectorX[]">
+									<option value="AND">And</option>
+									<option value="OR">Or</option>
+								</select></td>
+								<td><select id="selectPara" name="selectFields[]" onchange="javascript:forDatePicker(this)"><option value="title">Document Title</option><option value="authors">Authors</option><option value="abstract">Abstract</option><option value="doi">DOI - Digital Object Identifier</option><option value="avg_rating">Average Rating</option><option value="publish_date">Publication Date</option><option value="pages">Pages</option><option value="Journal">Journal</option><option value="se_method">SE methods or practies</option><option value="se_methodology">SE methodology</option><option value="research_methods">Research Method</option><option value="benefit">Research Outcome</option></select>
+									<select name="selectOperators[]">
+										<option value="contains">Contains</option>
+										<option value="biggerThan">Greater Than or Equal</option>
+										<option value="smallerThan">Less Than or Equal</option>
+										<option value="equals">Equals</option>
+									</select>
+									<input type="input" name="selectFieldValues[]" value＝""="" title="" id="" class="hintForUser">
+									<input type="button" value="x" onclick="javascript:deleteTr(this)" id="removeButton" ;="">
+									<input type="button" value="+" onclick="javascript:addSelectResult(this)" id="addSelect">
+									<br>
+								</td>
+							</tr><tr id="selectTr">
+							<td>
+								<select id="selectParaCon" name="selectConnectorX[]">
+									<option value="AND">And</option>
+									<option value="OR">Or</option>
+								</select></td>
+								<td><select id="selectPara" name="selectFields[]" onchange="javascript:forDatePicker(this)"><option value="title">Document Title</option><option value="authors">Authors</option><option value="abstract">Abstract</option><option value="doi">DOI - Digital Object Identifier</option><option value="avg_rating">Average Rating</option><option value="publish_date">Publication Date</option><option value="pages">Pages</option><option value="Journal">Journal</option><option value="se_method">SE methods or practies</option><option value="se_methodology">SE methodology</option><option value="research_methods">Research Method</option><option value="benefit">Research Outcome</option></select>
+									<select name="selectOperators[]">
+										<option value="contains">Contains</option>
+										<option value="biggerThan">Greater Than or Equal</option>
+										<option value="smallerThan">Less Than or Equal</option>
+										<option value="equals">Equals</option>
+									</select>
+									<input type="input" name="selectFieldValues[]" value＝""="" title="" id="" class="hintForUser">
+									<input type="button" value="x" onclick="javascript:deleteTr(this)" id="removeButton" ;="">
+									<input type="button" value="+" onclick="javascript:addSelectResult(this)" id="addSelect">
+									<br>
+								</td>
+							</tr><tr id="selectTr">
+							<td>
+								<select id="selectParaCon" name="selectConnectorX[]">
+									<option value="AND">And</option>
+									<option value="OR">Or</option>
+								</select></td>
+								<td><select id="selectPara" name="selectFields[]" onchange="javascript:forDatePicker(this)"><option value="title">Document Title</option><option value="authors">Authors</option><option value="abstract">Abstract</option><option value="doi">DOI - Digital Object Identifier</option><option value="avg_rating">Average Rating</option><option value="publish_date">Publication Date</option><option value="pages">Pages</option><option value="Journal">Journal</option><option value="se_method">SE methods or practies</option><option value="se_methodology">SE methodology</option><option value="research_methods">Research Method</option><option value="benefit">Research Outcome</option></select>
+									<select name="selectOperators[]">
+										<option value="contains">Contains</option>
+										<option value="biggerThan">Greater Than or Equal</option>
+										<option value="smallerThan">Less Than or Equal</option>
+										<option value="equals">Equals</option>
+									</select>
+									<input type="input" name="selectFieldValues[]" value＝""="" title="" id="" class="hintForUser">
+									<input type="button" value="x" onclick="javascript:deleteTr(this)" id="removeButton" ;="">
+									<input type="button" value="+" onclick="javascript:addSelectResult(this)" id="addSelect">
+									<br>
+								</td>
+							</tr></tbody></table>
+
+						<div>
+
+							<input type="submit" value="Click me to search" class="btn btn-success center-block">
+
+						</div>
+
+						<h5>You can search the articals in this page by your keywords. <br>Click "Click me to search" button to search after you fill the search condition form.
+						<br> Click the "+" button to add more search conditions.<br>
+						Click the "X" button to delete search conditions. </h5>
+					</form></td>
+					<td><div id="searchRecordLand"><table border="1"><tbody><tr><td><a href="#" onclick="searchByID(7);return false;">Title has user</a></td><td><input type="button" value="X" onclick="deleteX(7,this)"></td></tr><tr><td><a href="#" onclick="searchByID(6);return false;">Agile Users</a></td><td><input type="button" value="X" onclick="deleteX(6,this)"></td></tr></tbody></table></div></td>
+				</tr>
+			</tbody></table>
+
+
+</div>
+<div class="bottomdb">
+<div class="container">
+<div class="col-md-9 col-xs-12 padding0">
+<p style="color:#fff;">About SERLER</p>
+<p style="color:#fff;">Copyright @ 2015 AUT</p>
+</div>
+</div>
+</div>
+
+
+<div role="log" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div></body></html>
