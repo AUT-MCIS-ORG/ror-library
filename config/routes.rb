@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'html/static'
+
   post 'source_rating/rate'
 
   post 'save_search/save'
