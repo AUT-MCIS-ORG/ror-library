@@ -13,7 +13,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"></script>
 
-<input size="120" type="hidden" id="searchString" name="searchString" value="<%= @searchString %>"/>
+
 
 
 <script type="text/javascript">
@@ -65,6 +65,119 @@ $(document).ready(function() {
 } );
 
 </script>
+
+
+  <script type="text/javascript">
+  $(function() {
+    var dialog, form,      
+      searchString = $( "#searchString" ),
+      name = $( "#name" ),     
+      allFields = $( [] ).add( name ),
+      tips = $( ".validateTips" );
+      
+ 	function updateTips( t ) {
+      tips
+        .text( t )
+        .addClass( "ui-state-highlight" );
+      setTimeout(function() {
+        tips.removeClass( "ui-state-highlight", 1500 );
+      }, 500 );
+    }
+    
+    function checkLength( o, n, min, max ) {
+      if ( o.val().length > max || o.val().length < min ) {
+        o.addClass( "ui-state-error" );
+        updateTips( "Length of " + n + " must be between " +
+          min + " and " + max + "." );
+        return false;
+      } else {
+        return true;
+      }
+    }
+ 
+ 
+    function saveSearchCond() {
+      var valid = true;
+      allFields.removeClass( "ui-state-error" );
+ 
+      valid = valid && checkLength( name, "Name", 3, 16 );
+      
+      if ( valid ) {
+        //console.log("name: "+name.val()+"hidden: "+searchString.val()+", is valid, try ajax");
+        var searchData = {
+            search_name: name.val(),
+            search_values:searchString.val()
+        }
+        
+        $.ajax({
+            url: '/save_search/save.json',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                //console.log("success: "+data.result);
+                updateTips("New Search conditions saved successfully!");  
+            },
+            error: function(xhr) {
+				alert("something is wrong");
+			},
+            data: searchData
+        });
+        
+        dialog.dialog( "close" ); 
+      }
+      return valid;
+    }
+ 
+    dialog = $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Save": saveSearchCond,
+        Cancel: function() {
+          dialog.dialog( "close" );
+        }
+      },
+      close: function() {
+        form[ 0 ].reset();
+        allFields.removeClass( "ui-state-error" );
+      }
+    });
+ 
+    form = dialog.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      addUser();
+    });
+ 
+    $( "#openDiag" ).button().on( "click", function() {    	
+    	updateTips("All form fields are required!"); 
+        dialog.dialog( "open" );
+    });
+  });
+  </script>
+
+
+
+<div id="dialog-form" title="Save Search Conditions">
+  <p class="validateTips"></p>
+  <form>
+    <fieldset>
+      <input type="hidden" id="searchString" name="searchString" value="<%= @searchString %>"/>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
+      
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+ 
+ 
+
+<button id="openDiag">Save Search Conditions</button>
+ 
+ 
+
 
 <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
