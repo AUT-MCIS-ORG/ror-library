@@ -63,29 +63,69 @@
 	 Author: Zhe Wang
 	 */
 	 function addSelectResult(obj) {
+	 	//remove datepickerid
+	 	$("#datepickerStart").attr("id", "");
 
 	 	if ($("#selectTable tr").length === 1) {
 	 		$("#removeButton").removeAttr("style");
 	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
-	 		var addTr = $("#selectTr").clone(true);
+
+//Add if for special handling Average Rating
+
+	 		if($("#selectPara").find("option:selected").text()==='Average Rating'){
+
+	 			$(obj).prev().prev().remove();
+	 			var inputOrigin ='<input type="input" name="selectFieldValues" value＝""="" id="" class="hintForUser">';
+	 			$(obj).prev().prev().after(inputOrigin);
+	 			var addTr = $("#selectTr").clone(true);
+	 			$(obj).prev().prev().remove();
+	 			var rateingSelectOrigin ='<select name ="selectFieldValues"></select>';
+	 			$(obj).prev().prev().after(rateingSelectOrigin);
+	 			var rateingOptionsOrigin ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
+	 			$(obj).prev().prev().append(rateingOptionsOrigin)
+
+	 		}else{
+	 			var addTr = $("#selectTr").clone(true);
+	 		}
+
+
 	 		addTr.find("input:first").val("");
+	 		addTr.find("input:first").removeAttr('title');
 	 		addTr.appendTo($("#selectTable"));
 	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
 
 	 	} else {
 	 		$("#removeButton").removeAttr("style");
 	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").removeAttr("style");
-	 		var addTr = $("#selectTr").clone(true);
-	 		addTr.find("input:first").val("");
-	 		addTr.appendTo($("#selectTable"));
-	 		$(obj).parent().find("select:first").removeAttr("style");
-	 		$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
 
-	 	}
+//Add if for special handling Average Rating
 
-	 };
+	 		if($("#selectPara").find("option:selected").text()==='Average Rating'){
 
-	/*
+	 			$(obj).prev().prev().remove();
+	 			var inputOrigin ='<input type="input" name="selectFieldValues" value＝""="" id="" class="hintForUser">';
+	 			$(obj).prev().prev().after(inputOrigin);
+	 			var addTr = $("#selectTr").clone(true);
+	 			$(obj).prev().prev().remove();
+	 			var rateingSelectOrigin ='<select name ="selectFieldValues"></select>';
+	 			$(obj).prev().prev().after(rateingSelectOrigin);
+	 			var rateingOptionsOrigin ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
+	 			$(obj).prev().prev().append(rateingOptionsOrigin)
+
+	 		}else{
+	 			var addTr = $("#selectTr").clone(true);
+	 		}
+			addTr.find("input:first").val("");
+			addTr.find("input:first").removeAttr('title');
+			addTr.appendTo($("#selectTable"));
+			$(obj).parent().find("select:first").removeAttr("style");
+			$("#selectTable").find("tr:first").find("td:first").find("select:first").attr("style", "display:none");
+
+		}
+
+	};
+
+			/*
 	 Function: Datepicker calling and hind calling for search conditions
 	 Author: Zhe Wang
 	 */
@@ -112,7 +152,14 @@
 
 	 	if (textForId === "Average Rating") {
 
-	 		$(obj).next().next().attr("title", "1, 2, 3, 4, 5");
+	 		//$(obj).next().next().attr("title", "1, 2, 3, 4, 5");
+
+	 		$(obj).next().next().remove();
+	 		$(obj).next().after('<select name ="selectFieldValues"></select>');
+	 		var rateingOptions ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
+	 		$(obj).next().next().append(rateingOptions)
+
+
 	 	} else if (textForId !== "Authors") {
 	 		$(obj).next().next().attr("title", "");
 	 	}
