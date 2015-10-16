@@ -238,7 +238,7 @@
 	 		cache : false,
 	 		success : function(data, status) {
 
-	 			var tableRecord = $("<table border=\"1\">");
+	 			var tableRecord = $("<table class=\"table table-striped\"> <thead><tr><th>My Saved Searches</th><th></th></tr></thead>");
 	 			tableRecord.appendTo($("#searchRecordLand"));
 	 			for (var i = data.count - 1; i >= 0; i--) {
 	 				var tr = $("<tr></tr>");
@@ -320,13 +320,13 @@
 		<input type="hidden" name="searchID" value="dddd" />
 		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	</form>
-	<table width="100%" border="1">
-		<tr>
-			<td width="80%">
+	<table width="100%" border="0">
+		<tbody><tr>
+			<td width="75%" valign="top">
 				<form name="searchForm" action="/result/index" method="post">
 					<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-					<table  width="100%"  id="selectTable" border="1">
-
+					<table width="100%" id="selectTable" border="0" class="table table-hover">
+                                                <tbody>
 						<tr id ="selectTr">
 							<td>
 								<select id ="selectParaCon" name="selectConnectorX[]" >
@@ -347,7 +347,7 @@
 								</td>
 							</tr>
 
-						</table>
+						</tbody></table>
 
 						<div>
 
@@ -359,7 +359,7 @@
 						</br> Click the "+" button to add more search conditions.</br>
 						Click the "X" button to delete search conditions. </h5>
 					</form></td>
-					<td><div id ="searchRecordLand"></div></td>
+					<td width="25%" valign="top"><div id="searchRecordLand" style="margin:0 0 0 15px;"></div></td>
 				</tr>
-			</table>
+			</tbody></table>
 
