@@ -26,8 +26,22 @@ $(document).ready(function() {
         "ajax": "/analyst/listAllPendingArticlesJson.json",
         dom: 'Bfrtip',
     	buttons: [
-        'colvis','copy', 'excel', 'pdf', 'print'
-    	],
+
+	    {
+                text: 'Select Table Columns',
+		extend: 'colvis'
+            },
+            {
+                extend: 'collection',
+                text: 'Export Table Data',
+		className: 'ui-button-text',
+                buttons: [
+                    'excel',
+                    'pdf',
+                    'print'
+                ]
+            }
+        ],
     	"columns": [
         { "data": "id" }, //0
         { "data": "title" },

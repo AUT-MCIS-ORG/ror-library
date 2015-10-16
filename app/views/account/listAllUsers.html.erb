@@ -25,9 +25,23 @@ $(document).ready(function() {
     $('#example').DataTable( {
         "ajax": "/account/listUsersJson.json",
         dom: 'Bfrtip',
-    buttons: [
-        'colvis','copy', 'excel', 'pdf', 'print'
-    ],
+    	buttons: [
+
+	    {
+                text: 'Select Table Columns',
+		extend: 'colvis'
+            },
+            {
+                extend: 'collection',
+                text: 'Export Table Data',
+		className: 'ui-button-text',
+                buttons: [
+                    'excel',
+                    'pdf',
+                    'print'
+                ]
+            }
+        ],
         "columns": [
             { "data": "id" },
             { "data": "email" },
