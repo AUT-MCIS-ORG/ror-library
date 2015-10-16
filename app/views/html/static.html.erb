@@ -265,14 +265,16 @@
 		<input type="hidden" name="searchID" value="dddd">
 		<input type="hidden" name="authenticity_token" id="authenticity_token" value="6R16beYFXnPVGYyyfmvrzHYH/TmxDMCu+vrHt0YGxkhUHPIDu61y4CbG96vY9LmOY1t8xTmFTrD6LJ1ruYjyvg==">
 	</form>
-	<table width="100%" border="1">
+	<table width="100%" border="0">
 		<tbody><tr>
-			<td width="80%">
+			<td width="70%">
 				<form name="searchForm" action="/result/index" method="post">
 					<input type="hidden" name="authenticity_token" id="authenticity_token" value="6R16beYFXnPVGYyyfmvrzHYH/TmxDMCu+vrHt0YGxkhUHPIDu61y4CbG96vY9LmOY1t8xTmFTrD6LJ1ruYjyvg==">
-					<table width="100%" id="selectTable" border="1">
+					<table width="100%" id="selectTable" border="0" class="table table-hover">
+						<tbody>
 
-						<tbody><tr id="selectTr">
+							<thead><tr><th></th><th>Saved conditions</th></tr></thead>
+                      <tr id="selectTr">
 							<td>
 								<select id="selectParaCon" name="selectConnectorX[]" style="display:none">
 									<option value="AND">And</option>
@@ -358,7 +360,9 @@
 						<br> Click the "+" button to add more search conditions.<br>
 						Click the "X" button to delete search conditions. </h5>
 					</form></td>
-					<td><div id="searchRecordLand"><table border="1"><tbody><tr><td><a href="#" onclick="searchByID(7);return false;">Title has user</a></td><td><input type="button" value="X" onclick="deleteX(7,this)"></td></tr><tr><td><a href="#" onclick="searchByID(6);return false;">Agile Users</a></td><td><input type="button" value="X" onclick="deleteX(6,this)"></td></tr></tbody></table></div></td>
+					<td width="25%" valign="top"><div id="searchRecordLand" style="margin:0 0 0 15px;">
+						<table  class="table table-striped"><tbody><thead><tr><th>Saved search</th><th></th></tr></thead>
+							<tr><td><a href="#" onclick="searchByID(7);return false;">Title has user</a></td><td><input type="button" value="X" onclick="deleteX(7,this)"></td></tr><tr><td><a href="#" onclick="searchByID(6);return false;">Agile Users</a></td><td><input type="button" value="X" onclick="deleteX(6,this)"></td></tr></tbody></table></div></td>
 				</tr>
 			</tbody></table>
 

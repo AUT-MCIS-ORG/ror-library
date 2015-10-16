@@ -224,12 +224,12 @@
 		<input type="hidden" name="searchID" value="dddd" />
 		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	</form>
-	<table width="100%" border="1">
+	<table width="100%" border="0">
 		<tr>
 			<td width="80%">
 				<form name="searchForm" action="/result/index" method="post">
 					<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-					<table  width="100%"  id="selectTable" border="1">
+					<table  width="100%"  id="selectTable" border="0" class="table">
 
 						<tr id ="selectTr">
 							<td>
