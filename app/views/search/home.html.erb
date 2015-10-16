@@ -79,11 +79,11 @@
 	 		if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practies' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methodology' || $(obj).closest('td').find('select').find("option:selected").html()==='Research Method'){
 
 	 			$(obj).prev().prev().remove();
-	 			var inputOrigin ='<input type="input" name="selectFieldValues" value＝""="" id="" class="hintForUser">';
+	 			var inputOrigin ='<input type="input" name="selectFieldValues[]" value＝""="" id="" class="hintForUser">';
 	 			$(obj).prev().prev().after(inputOrigin);
 	 			var addTr = $("#selectTr").clone(true);
 	 			$(obj).prev().prev().remove();
-	 			var rateingSelectOrigin ='<select name ="selectFieldValues"></select>';
+	 			var rateingSelectOrigin ='<select name ="selectFieldValues[]"></select>';
 	 			$(obj).prev().prev().after(rateingSelectOrigin);
 	 			if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating'){
 	 				var rateingOptionsOrigin ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
@@ -115,11 +115,11 @@
 	 		if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practies' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methodology' || $(obj).closest('td').find('select').find("option:selected").html()==='Research Method'){
 
 	 			$(obj).prev().prev().remove();
-	 			var inputOrigin ='<input type="input" name="selectFieldValues" value＝""="" id="" class="hintForUser">';
+	 			var inputOrigin ='<input type="input" name="selectFieldValues[]" value＝""="" id="" class="hintForUser">';
 	 			$(obj).prev().prev().after(inputOrigin);
 	 			var addTr = $("#selectTr").clone(true);
 	 			$(obj).prev().prev().remove();
-	 			var rateingSelectOrigin ='<select name ="selectFieldValues"></select>';
+	 			var rateingSelectOrigin ='<select name ="selectFieldValues[]"></select>';
 	 			$(obj).prev().prev().after(rateingSelectOrigin);
 	 			if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating'){
 	 				var rateingOptionsOrigin ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
@@ -157,7 +157,7 @@
 	 	if (textForId === "Publication Date") {
 
 	 		$(obj).next().next().attr("id", "datepickerStart");
-	 		$("#datepickerStart").datepicker();
+	 		$("#datepickerStart").datepicker({ dateFormat: 'yy-mm-dd'});
 
 	 	} else {
 	 		$("#datepickerStart").datepicker("destroy");
@@ -174,7 +174,7 @@
 	 	if (textForId === "Average Rating") {
 
 	 		$(obj).next().next().remove();
-	 		$(obj).next().after('<select name ="selectFieldValues"></select>');
+	 		$(obj).next().after('<select name ="selectFieldValues[]"></select>');
 	 		var rateingOptions ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
 	 		$(obj).next().next().append(rateingOptions)
 
@@ -186,7 +186,7 @@
 	 	if (textForId === "SE methods or practies") {
 
 	 		$(obj).next().next().remove();
-	 		$(obj).next().after('<select name ="selectFieldValues"></select>');
+	 		$(obj).next().after('<select name ="selectFieldValues[]"></select>');
 	 		var rateingOptions ='<option value ="TDD">TDD</option><option value ="BDD">BDD</option><option value ="pair programming">pair programming</option><option value ="daily standup meetings">daily standup meetings</option><option value ="story boards">story boards</option><option value ="user story mapping">user story mapping</option><option value ="continuous integration">continuous integration</option><option value ="retrospectives">retrospectives</option><option value ="burn down charts">burn down charts</option><option value ="requirements prioritisation">requirements prioritisation</option><option value ="version control">version control</option><option value ="code sharing">code sharing</option>';
 
 	 		$(obj).next().next().append(rateingOptions)
@@ -195,7 +195,7 @@
 	 	if (textForId === "SE methodology") {
 
 	 		$(obj).next().next().remove();
-	 		$(obj).next().after('<select name ="selectFieldValues"></select>');
+	 		$(obj).next().after('<select name ="selectFieldValues[]"></select>');
 	 		var rateingOptions ='<option value ="Scrum">Scrum</option><option value ="Waterfall">Waterfall</option><option value ="Spiral">Spiral</option><option value ="XP">XP</option><option value ="Rational Unified Process">Rational Unified Process</option><option value ="Crystal">Crystal</option><option value ="Clean room">Clean room</option><option value ="Feature Driven Development">Feature Driven Development</option><option value ="Model Driven Development">Model Driven Development</option><option value ="Domain Driven Development">Domain Driven Development</option><option value ="Cloud computing"> Cloud computing</option><option value ="Service Oriented Development">Service Oriented Development</option><option value ="Aspect Oriented Development">Aspect Oriented Development</option><option value ="Valuse Driven Development">Valuse Driven Development</option><option value ="Product Driven Development">Product Driven Development</option><option value ="Agile">Agile</option>';
 
 	 		$(obj).next().next().append(rateingOptions)
@@ -204,7 +204,7 @@
 	 	if (textForId === "Research Method") {
 
 	 		$(obj).next().next().remove();
-	 		$(obj).next().after('<select name ="selectFieldValues"></select>');
+	 		$(obj).next().after('<select name ="selectFieldValues[]"></select>');
 	 		var rateingOptions ='<option value ="Case study">Case study</option><option value ="Field Observation">Field Observation</option><option value ="Experiment">Experiment</option><option value ="Interview">Interview</option><option value ="Survey">Survey</option>';
 
 	 		$(obj).next().next().append(rateingOptions)

@@ -31,10 +31,10 @@ SearchField.new({ :fieldID => "title", :fieldName => "Document Title", :fieldTyp
 SearchField.new({ :fieldID => "authors", :fieldName => "Authors", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "abstract", :fieldName => "Abstract", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "doi", :fieldName => "DOI - Digital Object Identifier", :fieldType=>"string"}).save
-#SearchField.new({ :fieldID => "ISBN", :fieldName => "ISBN - International Standard Book Number", :fieldType=>"string"}).save
+#  SearchField.new({ :fieldID => "ISBN", :fieldName => "ISBN - International Standard Book Number", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "avg_rating", :fieldName => "Average Rating", :fieldType=>"list",:optionalValues=>"1,2,3,4,5"}).save
 SearchField.new({ :fieldID => "publish_date", :fieldName => "Publication Date", :fieldType=>"date"}).save
-SearchField.new({ :fieldID => "pages", :fieldName => "Pages", :fieldType=>"string"}).save
+#  SearchField.new({ :fieldID => "pages", :fieldName => "Pages", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "Journal", :fieldName => "Journal", :fieldType=>"string"}).save
 SearchField.new({ :fieldID => "se_method", :fieldName => "SE methods or practies", :fieldType=>"list",:optionalValues=>"TDD, BDD, pair programming, planning poker, daily standup meetings, story boards, user story mapping, continuous integration, retrospectives, burn down charts, requirements prioritisation, version control, code sharing"}).save
 SearchField.new({ :fieldID => "se_methodology", :fieldName => "SE methodology", :fieldType=>"list",:optionalValues=>"Scrum, Waterfall, Spiral, XP, Rational Unified Process, Crystal, Clean room, Feature Driven Development, Model Driven Development, Domain Driven Development, Formal methods, Problem Driven Development, Cloud computing, Service Oriented Development, Aspect Oriented Development, Valuse Driven Development , Product Driven Development, Agile"}).save

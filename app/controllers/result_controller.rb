@@ -86,16 +86,29 @@ class ResultController < ApplicationController
     unless field and op and value
       sql = ""
     end
-    value = value.upcase
-    if(op == 'contains') 
-      sql = "UPPER(" + field + ') like ' +"'%#{value}%'"
-    elsif (op == 'biggerThan')
-       sql =  field + ' >= ' + value
-    elsif (op == 'smallerThan')
-      sql =  field + ' <= ' + value
-    elsif (op == 'equals')
-      sql =  field + ' =' + "'#{value}'"    
+
+    if field == 'avg_rating'
+	    if (op == 'biggerThan')
+	       sql =  field + " >= " + value 
+	    elsif (op == 'smallerThan')
+	      sql =  field + " <= " + value 
+	    else
+	      sql =  field + ' = ' + value	    	
+	    end
+    else
+	    value = value.upcase
+	    if(op == 'contains') 
+	      sql = "UPPER(" + field + ') like ' +"'%#{value}%'"
+	    elsif (op == 'biggerThan')
+	       sql =  field + " >= '" + value + "' "
+	    elsif (op == 'smallerThan')
+	      sql =  field + " <= '" + value + "' "
+	    elsif (op == 'equals')
+	      sql =  field + ' =' + "'#{value}'"    
+	    end
     end
+		
+
     
     return sql; 
   end
