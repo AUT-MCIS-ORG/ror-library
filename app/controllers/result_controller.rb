@@ -44,13 +44,15 @@ class ResultController < ApplicationController
     oldParms = ActiveSupport::JSON.decode(json)
     whereClause = ""
     
-    oldParms["selectConnectorX"].length.times do |i|      
+    if oldParms	and oldParms["selectConnectorX"]
+	    oldParms["selectConnectorX"].length.times do |i|      
 
-      sqlFrag = getSQLFrag(oldParms["selectFields"][i], oldParms["selectOperators"][i], oldParms["selectFieldValues"][i])
-      if sqlFrag and sqlFrag.strip.length > 0
-        whereClause += " "+oldParms["selectConnectorX"][i]
-      	whereClause = whereClause + " " + sqlFrag
-      end	
+	      sqlFrag = getSQLFrag(oldParms["selectFields"][i], oldParms["selectOperators"][i], oldParms["selectFieldValues"][i])
+	      if sqlFrag and sqlFrag.strip.length > 0
+		whereClause += " "+oldParms["selectConnectorX"][i]
+	      	whereClause = whereClause + " " + sqlFrag
+	      end	
+	    end
     end 
     
     
