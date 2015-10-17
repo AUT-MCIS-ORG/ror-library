@@ -3,40 +3,17 @@ require 'base64'
 class ResultController < ApplicationController
   def index
     searchID = params[:searchID]
-    if searchID.to_s.strip.length == 0
-      #there is not searchID, get the form conditions
-      resultS = ""
-
-      #params[:selectConnectorX].each_with_index {|value, index| puts "[#{index}] == #{value}" }
-      #params[:selectFields].each_with_index {|value, index| puts "[#{index}] == #{value}" }
-      #params[:selectOperators].each_with_index {|value, index| puts "[#{index}] == #{value}" }
-      
+    if searchID and searchID.to_s.strip.length >= 0
+      #search for the search string saved in DB
+      # puts "search for ID: #{searchID}, user: #{current_user.id}"
+      searchRow = SavedSearch.find_by user_id: current_user.id, id: searchID
+      @searchString = Base64.encode64(searchRow.search_values)
+    else
       json = params.to_json
       @searchString = Base64.encode64(json)
-      
-      #puts "json: " + json
-      #puts "code: " + code64 
-      #puts "decode: " + Base64.decode64(code64)
-
-      #@searchString = resultS
-    else
-      #search for the search string saved in DB
-      # puts "search for ID: #{searchID}, user: #{current_user.id}"      
-      searchRow = SavedSearch.find_by user_id: current_user.id, id: searchID
-      
-      @searchString = Base64.encode64(searchRow.search_values)
     end
 
   end
-
-
-
-  # obsolete, moved in /saved_search/list
-  #def listMySavedSearches
-  #end
-  #
-  #def saveSearch
-  #end
 
   def getSourceDetail
     begin
@@ -68,16 +45,19 @@ class ResultController < ApplicationController
     whereClause = ""
     
     oldParms["selectConnectorX"].length.times do |i|      
-      if i > 0 
+
+      sqlFrag = getSQLFrag(oldParms["selectFields"][i], oldParms["selectOperators"][i], oldParms["selectFieldValues"][i])
+      if sqlFrag and sqlFrag.strip.length > 0
         whereClause += " "+oldParms["selectConnectorX"][i]
-      end
-      sqlFrag = " "+ getSQLFrag(oldParms["selectFields"][i], oldParms["selectOperators"][i], oldParms["selectFieldValues"][i])
-      whereClause += sqlFrag
+      	whereClause = whereClause + " " + sqlFrag
+      end	
     end 
     
     
     sql = "select sources.*,evidences.se_method,evidences.se_methodology,evidences.benefit, evidences.result, evidences.participants , evidences.metric,  evidences.context from sources left join evidences on sources.id = evidences.source_id"
-    sql =  sql + " where " + whereClause
+    if whereClause.to_s.strip.length > 0    
+	  sql =  sql + " where 1=1 " + whereClause
+    end
     #puts "SQL Clause: " +sql
     @rows = Source.find_by_sql(sql) 
   end
@@ -85,6 +65,11 @@ class ResultController < ApplicationController
   def getSQLFrag(field,op,value)
     unless field and op and value
       sql = ""
+    end
+
+    if value == "" or field == "" or op == ""
+	  sql=""	
+	  return
     end
 
     if field == 'avg_rating'
