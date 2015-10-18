@@ -5,14 +5,19 @@ class SaveSearchController < ApplicationController
 
     name = params[:search_name]
     value = params[:search_values]
-    decodeV = Base64.decode64(value)
-    
-    rc = SavedSearch.create( user_id: current_user.id, search_name: name, search_values: decodeV)
-    if rc != nil
-      @ok = "success"
+    if name and value and name.length > 0 and value.lenght > 0
+      decodeV = Base64.decode64(value)
+
+      rc = SavedSearch.create( user_id: current_user.id, search_name: name, search_values: decodeV)
+      if rc != nil
+        @ok = "success"
+      else
+        @ok = "failure"
+      end
     else
       @ok = "failure"
-    end 
+    end
+
   end
   
   def delete
