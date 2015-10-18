@@ -1,6 +1,6 @@
 Given /^I am on the login page$/ do
-  visit "http://localhost:3000"
-  #visit "http://serler.herokuapp.com"
+  #visit "http://localhost:3000"
+  visit "http://serler.herokuapp.com"
 end
 
 When /^I click link "([^"]*)"$/ do |link|
