@@ -1,6 +1,6 @@
 require "Capybara"
 require "Capybara/cucumber"
-require "rspec"
+# require "rspec"
 require 'capybara/poltergeist'
 
 Capybara.default_driver = :poltergeist
