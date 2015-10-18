@@ -24,8 +24,8 @@ And I check checkbox "user_remember_me"
 Then I click button "Log in"
 When I click link "Search"
 When I select option "Authors" with "selectPara"
-When I find ".//*[@id='selectTr']/td/select[2]" select "Equals"
-Then I click button "Search"
+When I find ".//*[@id='selectTr']/td/select[2]" select "Greater Than or Equal"
+Then I click button "Click me to search"
 
 Scenario: Search Artile2
 Given I am on the login page
@@ -36,5 +36,5 @@ And I check checkbox "user_remember_me"
 Then I click button "Log in"
 When I click link "Search"
 When I select option "Abstract" with "selectPara"
-When I find ".//*[@id='selectTr']/td/select[2]" select "Smaller Than"
-Then I click button "Search"
+When I find ".//*[@id='selectTr']/td/select[2]" select "Less Than or Equal"
+Then I click button "Click me to search"

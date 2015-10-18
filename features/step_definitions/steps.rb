@@ -1,5 +1,6 @@
 Given /^I am on the login page$/ do
   visit "http://localhost:3000"
+  #visit "http://serler.herokuapp.com"
 end
 
 When /^I click link "([^"]*)"$/ do |link|
@@ -26,6 +27,14 @@ When /^I find "([^"]*)" click$/ do |xpath1|
   find(:xpath, xpath1).click
 end
 
+When /^I find "([^"]*)" fill in "([^"]*)"$/ do |xpath1, value|
+  find(:xpath, xpath1).set(value)
+end
+
+When /^I wait "([^"]*)" seconds?$/ do |seconds|
+  sleep seconds.to_i
+end
+
 Then /^I capture UI "([^"]*)"$/ do |text|
   page.should have_content(text)
 end
@@ -36,5 +45,9 @@ end
 
 Then /^I should see "([^"]*)"$/ do |text|
   page.should have_content(text)
+end
+
+Then /^Save Page$/ do 
+  save_and_open_page
 end
 

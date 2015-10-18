@@ -1,10 +1,10 @@
-require "capybara"
-require "capybara/cucumber"
+require "Capybara"
+require "Capybara/cucumber"
+require "rspec"
 require 'capybara/poltergeist'
 
 Capybara.default_driver = :poltergeist
 Capybara.default_selector = :xpath
-Capybara.default_wait_time = 20
 Capybara.register_driver :poltergeist do |app|
   options = {
       :js_errors => true,
