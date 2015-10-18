@@ -76,7 +76,7 @@
 
 //Add if for special handling Average Rating
 
-	 		if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practies' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methodology' || $(obj).closest('td').find('select').find("option:selected").html()==='Research Method'){
+	 		if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practices' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methodology' || $(obj).closest('td').find('select').find("option:selected").html()==='Research Method'){
 
 	 			$(obj).prev().prev().remove();
 	 			var inputOrigin ='<input type="input" name="selectFieldValues[]" value＝""="" id="" class="hintForUser">';
@@ -87,7 +87,7 @@
 	 			$(obj).prev().prev().after(rateingSelectOrigin);
 	 			if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating'){
 	 				var rateingOptionsOrigin ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
-	 			}else if($(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practies'){
+	 			}else if($(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practices'){
 	 				var rateingOptionsOrigin ='<option value ="TDD">TDD</option><option value ="BDD">BDD</option><option value ="pair programming">pair programming</option><option value ="daily standup meetings">daily standup meetings</option><option value ="story boards">story boards</option><option value ="user story mapping">user story mapping</option><option value ="continuous integration">continuous integration</option><option value ="retrospectives">retrospectives</option><option value ="burn down charts">burn down charts</option><option value ="requirements prioritisation">requirements prioritisation</option><option value ="version control">version control</option><option value ="code sharing">code sharing</option>';
 	 			}else if($(obj).closest('td').find('select').find("option:selected").html()==='SE methodology'){
 	 				var rateingOptionsOrigin = '<option value ="Scrum">Scrum</option><option value ="Waterfall">Waterfall</option><option value ="Spiral">Spiral</option><option value ="XP">XP</option><option value ="Rational Unified Process">Rational Unified Process</option><option value ="Crystal">Crystal</option><option value ="Clean room">Clean room</option><option value ="Feature Driven Development">Feature Driven Development</option><option value ="Model Driven Development">Model Driven Development</option><option value ="Domain Driven Development">Domain Driven Development</option><option value ="Cloud computing"> Cloud computing</option><option value ="Service Oriented Development">Service Oriented Development</option><option value ="Aspect Oriented Development">Aspect Oriented Development</option><option value ="Valuse Driven Development">Valuse Driven Development</option><option value ="Product Driven Development">Product Driven Development</option><option value ="Agile">Agile</option>';
@@ -112,7 +112,7 @@
 
 //Add if for special handling Average Rating
 
-	 		if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practies' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methodology' || $(obj).closest('td').find('select').find("option:selected").html()==='Research Method'){
+	 		if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practices' || $(obj).closest('td').find('select').find("option:selected").html()==='SE methodology' || $(obj).closest('td').find('select').find("option:selected").html()==='Research Method'){
 
 	 			$(obj).prev().prev().remove();
 	 			var inputOrigin ='<input type="input" name="selectFieldValues[]" value＝""="" id="" class="hintForUser">';
@@ -123,7 +123,7 @@
 	 			$(obj).prev().prev().after(rateingSelectOrigin);
 	 			if($(obj).closest('td').find('select').find("option:selected").html()==='Average Rating'){
 	 				var rateingOptionsOrigin ='<option value ="5">5</option><option value ="4">4</option><option value ="3">3</option><option value ="2">2</option><option value ="1">1</option>';
-	 			}else if($(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practies'){
+	 			}else if($(obj).closest('td').find('select').find("option:selected").html()==='SE methods or practices'){
 	 				var rateingOptionsOrigin ='<option value ="TDD">TDD</option><option value ="BDD">BDD</option><option value ="pair programming">pair programming</option><option value ="daily standup meetings">daily standup meetings</option><option value ="story boards">story boards</option><option value ="user story mapping">user story mapping</option><option value ="continuous integration">continuous integration</option><option value ="retrospectives">retrospectives</option><option value ="burn down charts">burn down charts</option><option value ="requirements prioritisation">requirements prioritisation</option><option value ="version control">version control</option><option value ="code sharing">code sharing</option>';
 	 			}else if($(obj).closest('td').find('select').find("option:selected").html()==='SE methodology'){
 	 				var rateingOptionsOrigin = '<option value ="Scrum">Scrum</option><option value ="Waterfall">Waterfall</option><option value ="Spiral">Spiral</option><option value ="XP">XP</option><option value ="Rational Unified Process">Rational Unified Process</option><option value ="Crystal">Crystal</option><option value ="Clean room">Clean room</option><option value ="Feature Driven Development">Feature Driven Development</option><option value ="Model Driven Development">Model Driven Development</option><option value ="Domain Driven Development">Domain Driven Development</option><option value ="Cloud computing"> Cloud computing</option><option value ="Service Oriented Development">Service Oriented Development</option><option value ="Aspect Oriented Development">Aspect Oriented Development</option><option value ="Valuse Driven Development">Valuse Driven Development</option><option value ="Product Driven Development">Product Driven Development</option><option value ="Agile">Agile</option>';
@@ -183,7 +183,7 @@
 	 		$(obj).next().next().attr("title", "");
 	 	}
 
-	 	if (textForId === "SE methods or practice") {
+	 	if (textForId === "SE methods or practices") {
 
 	 		$(obj).next().next().remove();
 	 		$(obj).next().after('<select name ="selectFieldValues[]"></select>');
