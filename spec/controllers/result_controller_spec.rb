@@ -39,4 +39,25 @@ RSpec.describe ResultController, type: :controller do
     end
   end
 
+  describe "index" do
+    before :each do
+      searchID= nil
+    end
+    it "select results" do
+    #  ResultController.to_s.start_with?("select")
+      expect(@searchString).to eq(nil)
+    end
+  end
+
+  describe "getSourceDetail" do
+    before :each do
+      @rc = 1
+    end
+      it "record not found" do
+       #@source = Source.find(id)
+       expect(@source).to eq(nil)
+
+      end
+  end
+
 end
